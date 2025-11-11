@@ -1,0 +1,24 @@
+﻿# General
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Node
+node_modules/
+dist/
+.next/
+
+# Python
+__pycache__/
+.venv/
+venv/
+
+# OS
+Desktop.ini
+
