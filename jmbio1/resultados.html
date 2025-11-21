@@ -24,24 +24,8 @@
 </head>
 <body class="bg-[var(--color-bg)] text-[var(--color-text)] font-sans min-h-screen">
 
-  <!-- Header -->
-  <header class="sticky top-0 z-40 border-b border-[var(--color-outline)] bg-[var(--color-header)]/95 backdrop-blur-md">
-    <div class="container mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
-      <a href="index.html" class="flex items-center gap-3">
-        <img src="imagens/logo-jm-bioanalises-branco.png" alt="JM Bioanalises" class="h-10 w-auto">
-      </a>
-      <nav class="hidden items-center gap-6 text-sm font-semibold text-[var(--color-text-muted)] lg:flex">
-        <a href="duvidas-frequentes.html" class="transition hover:text-white">Duvidas</a>
-        <a href="postos-de-coletas.html" class="transition hover:text-white">Postos de Coletas</a>
-        <a href="parceiros.html" class="transition hover:text-white">Parceiros</a>
-        <a href="contato.html" class="transition hover:text-white">Contato</a>
-      </nav>
-      <div class="flex items-center gap-3">
-        <a href="resultados.html" class="inline-flex items-center justify-center rounded-md border border-white bg-white/10 px-4 py-2 text-sm font-medium text-white">Resultado</a>
-        <a href="parceiros.html" class="inline-flex items-center justify-center rounded-md bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[var(--color-primary-dark)]">Portal do Parceiro</a>
-      </div>
-    </div>
-  </header>
+  <!-- Header Include -->
+  <div id="header-placeholder"></div>
 
   <main class="flex min-h-[calc(100vh-200px)] items-center justify-center px-4 py-16">
     <div class="w-full max-w-md">
@@ -52,34 +36,16 @@
             <svg class="h-8 w-8 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
           </div>
           <h1 class="text-2xl font-semibold">Acesse seu Resultado</h1>
-          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Digite seu CPF e senha para visualizar o laudo do exame toxicologico.</p>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Clique no botao abaixo para acessar o sistema de resultados.</p>
         </div>
 
-        <form class="space-y-4" x-data="{ loading: false }" @submit.prevent="loading = true; setTimeout(() => { window.location.href = 'https://jmtox.com.br/resultados'; }, 1500)">
-          <div>
-            <label class="mb-2 block text-sm font-medium">CPF</label>
-            <input type="text" required placeholder="000.000.000-00" class="w-full rounded-xl border border-[var(--color-outline)] bg-[var(--color-surface)] px-4 py-3 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20">
-          </div>
-          <div>
-            <label class="mb-2 block text-sm font-medium">Senha</label>
-            <input type="password" required placeholder="••••••••" class="w-full rounded-xl border border-[var(--color-outline)] bg-[var(--color-surface)] px-4 py-3 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/20">
-          </div>
-          <div class="flex items-center justify-between text-sm">
-            <label class="flex items-center gap-2">
-              <input type="checkbox" class="rounded border-[var(--color-outline)]">
-              <span class="text-[var(--color-text-muted)]">Lembrar-me</span>
-            </label>
-            <a href="#" class="text-[var(--color-primary)] hover:underline">Esqueci minha senha</a>
-          </div>
-          <button type="submit" :disabled="loading" class="w-full rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition hover:bg-[var(--color-primary-dark)] disabled:opacity-50">
-            <span x-show="!loading">Acessar resultado</span>
-            <span x-show="loading">Carregando...</span>
-          </button>
-        </form>
+        <a href="https://jmbio.cyberlims.com/resultados" target="_blank" class="block w-full rounded-xl bg-[var(--color-primary)] px-6 py-4 text-center font-medium text-white transition hover:bg-[var(--color-primary-dark)]">
+          Acessar Sistema de Resultados
+        </a>
 
         <div class="mt-6 border-t border-[var(--color-outline)] pt-6 text-center text-sm text-[var(--color-text-muted)]">
           <p>Primeiro acesso? Use seu CPF como senha inicial.</p>
-          <p class="mt-2">Duvidas? <a href="contato.html" class="text-[var(--color-primary)] hover:underline">Fale conosco</a></p>
+          <p class="mt-2">Duvidas? <a href="https://api.whatsapp.com/send?phone=5514981189728&text=Olá! Tenho dúvidas sobre como acessar meu resultado." target="_blank" class="text-[var(--color-primary)] hover:underline">Fale conosco no WhatsApp</a></p>
         </div>
       </div>
 
@@ -97,18 +63,10 @@
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-[var(--color-outline)] bg-[var(--color-surface)]/95">
-    <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs uppercase tracking-[0.3em] text-[var(--color-text-muted)] md:flex-row md:justify-between">
-      <p>&copy; 2022 - JM Bioanalises Exames Toxicologicos</p>
-      <p>Desenvolvido por Megaweb Solutions Ltda</p>
-    </div>
-  </footer>
+  <!-- Footer Include -->
+  <div id="footer-placeholder"></div>
 
-  <a href="https://api.whatsapp.com/send?phone=5514981691254" target="_blank" class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition hover:bg-green-600 hover:scale-110" aria-label="WhatsApp">
-    <svg class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a>
-
+  <script src="js/includes.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

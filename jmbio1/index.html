@@ -5,100 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JM Bioanalises - Exames Toxicologicos para Motoristas</title>
   <meta name="description" content="Exames toxicologicos para motoristas, empresas e laboratorios com rede nacional de coleta e laudos em ate 3 dias uteis.">
-
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- GSAP for animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-  <!-- Alpine.js for interactivity -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-
-  <!-- Custom Styles -->
   <link rel="stylesheet" href="css/styles.css">
-
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
-            primary: 'var(--color-primary)',
-            'primary-dark': 'var(--color-primary-dark)',
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-          },
+          colors: { primary: 'var(--color-primary)', 'primary-dark': 'var(--color-primary-dark)' },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
         }
       }
     }
   </script>
 </head>
-<body class="bg-[var(--color-bg)] text-[var(--color-text)] font-sans min-h-screen" x-data="{ mobileMenuOpen: false, currentTheme: 'sunrise' }">
+<body class="bg-[var(--color-bg)] text-[var(--color-text)] font-sans min-h-screen">
 
   <!-- Header -->
-  <header class="sticky top-0 z-40 border-b border-[var(--color-outline)] bg-[var(--color-header)]/95 backdrop-blur-md">
-    <div class="container mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
-      <a href="/" class="flex items-center gap-3">
-        <img src="imagens/logo-jm-bioanalises-branco.png" alt="JM Bioanalises" class="h-10 w-auto" loading="eager">
-      </a>
-
-      <!-- Desktop Navigation -->
-      <nav class="hidden items-center gap-6 text-sm font-semibold text-[var(--color-text-muted)] lg:flex">
-        <a href="duvidas-frequentes.html" class="transition hover:text-white">Duvidas</a>
-        <a href="duvidas-frequentes.html#procedimentos" class="transition hover:text-white">Procedimentos de Coleta</a>
-        <a href="postos-de-coletas.html" class="transition hover:text-white">Postos de Coletas</a>
-        <a href="parceiros.html" class="transition hover:text-white">Parceiros</a>
-        <a href="contato.html" class="transition hover:text-white">Contato</a>
-      </nav>
-
-      <div class="flex items-center gap-3">
-        <a href="resultados.html" class="inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] bg-transparent px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10">
-          Resultado
-        </a>
-        <a href="parceiros.html" class="inline-flex items-center justify-center rounded-md bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[var(--color-primary-dark)]">
-          Portal do Parceiro
-        </a>
-
-        <!-- Theme Switcher -->
-        <div class="relative" x-data="{ open: false }">
-          <button @click="open = !open" class="rounded-full p-2 text-white/70 hover:bg-white/10 hover:text-white transition">
-            <i data-lucide="sun" class="h-5 w-5"></i>
-          </button>
-          <div x-show="open" @click.away="open = false" x-transition class="absolute right-0 mt-2 w-40 rounded-lg border border-[var(--color-outline)] bg-[var(--color-surface)] p-2 shadow-xl">
-            <button @click="document.documentElement.setAttribute('data-theme', 'sunrise'); open = false" class="w-full rounded px-3 py-2 text-left text-sm hover:bg-[var(--color-primary)]/10">Sunrise</button>
-            <button @click="document.documentElement.setAttribute('data-theme', 'midnight'); open = false" class="w-full rounded px-3 py-2 text-left text-sm hover:bg-[var(--color-primary)]/10">Midnight</button>
-            <button @click="document.documentElement.setAttribute('data-theme', 'clinical'); open = false" class="w-full rounded px-3 py-2 text-left text-sm hover:bg-[var(--color-primary)]/10">Clinical</button>
-            <button @click="document.documentElement.setAttribute('data-theme', 'dark'); open = false" class="w-full rounded px-3 py-2 text-left text-sm hover:bg-[var(--color-primary)]/10">Dark</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile Navigation -->
-    <div class="border-t border-[var(--color-outline)] bg-[var(--color-header)] px-4 py-3 lg:hidden">
-      <nav class="flex flex-wrap gap-3 text-sm font-semibold text-[var(--color-text-muted)]">
-        <a href="duvidas-frequentes.html" class="rounded-full border border-gray-600 px-3 py-1 transition hover:border-[var(--color-primary)] hover:text-white">Duvidas</a>
-        <a href="postos-de-coletas.html" class="rounded-full border border-gray-600 px-3 py-1 transition hover:border-[var(--color-primary)] hover:text-white">Postos de Coletas</a>
-        <a href="parceiros.html" class="rounded-full border border-gray-600 px-3 py-1 transition hover:border-[var(--color-primary)] hover:text-white">Parceiros</a>
-        <a href="contato.html" class="rounded-full border border-gray-600 px-3 py-1 transition hover:border-[var(--color-primary)] hover:text-white">Contato</a>
-      </nav>
-    </div>
-  </header>
+  <div id="header-placeholder"></div>
 
   <main>
     <!-- Hero Section -->
     <section class="relative isolate overflow-hidden bg-[var(--color-bg)]">
-      <div class="relative h-[60vh]">
+      <div class="relative h-[60vh] min-h-[500px]">
         <img src="imagens/caminhao1.jpg" alt="Caminhao na rodovia" class="absolute inset-0 h-full w-full object-cover" loading="eager">
         <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
 
@@ -112,14 +46,14 @@
                 Simples, rapido e aprovado pelos orgaos de transito
               </h1>
               <p class="text-lg text-orange-100">
-                Resultado em ate <strong>3 dias uteis*</strong> apos o recebimento da amostra. *Consulte disponibilidade na sua regiao.
+                Resultado em ate <strong>3 dias uteis</strong> apos o recebimento da amostra. Credenciado pelo DENATRAN.
               </p>
               <div class="flex flex-wrap gap-3">
-                <a href="registre-se.html" class="inline-flex items-center justify-center rounded-md bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-white transition hover:bg-[var(--color-primary-dark)]">
-                  Comprar exame
+                <a href="https://api.whatsapp.com/send?phone=5514981189728&text=Olá! Gostaria de comprar um exame toxicológico." target="_blank" class="inline-flex items-center justify-center rounded-md bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-white transition hover:bg-[var(--color-primary-dark)]">
+                  Comprar Exame
                 </a>
-                <a href="postos-de-coletas.html" class="inline-flex items-center justify-center rounded-md border border-white/30 bg-white/10 px-6 py-3 text-base font-medium text-white backdrop-blur transition hover:bg-white/20">
-                  Ver postos de coleta
+                <a href="https://jmbio.cyberlims.com/resultados" target="_blank" class="inline-flex items-center justify-center rounded-md border border-white/30 bg-white/10 px-6 py-3 text-base font-medium text-white backdrop-blur transition hover:bg-white/20">
+                  Acessar Resultado
                 </a>
               </div>
             </div>
@@ -129,12 +63,13 @@
                 Por que motoristas escolhem a JM Bioanalises?
               </h2>
               <p class="mt-3">
-                Mais de uma decada entregando exames de larga janela para caminhoneiros, onibus rodoviarios, transporte urbano e carros executivos.
+                Mais de uma decada entregando exames de larga janela para motoristas de categorias C, D e E.
               </p>
               <ul class="mt-4 list-disc space-y-2 pl-5 text-slate-600">
                 <li>Voucher digital liberado em minutos</li>
                 <li>Coleta monitorada com cadeia de custodia</li>
                 <li>Resultado online com suporte humano</li>
+                <li>Credenciado pelo DENATRAN</li>
               </ul>
             </div>
           </div>
@@ -142,352 +77,144 @@
       </div>
     </section>
 
-    <!-- Segments Section -->
+    <!-- Quem Atendemos Section -->
     <section class="mx-auto max-w-6xl px-4 py-16">
       <div class="mb-10 flex flex-col gap-2 text-center">
-        <p class="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">
-          Quem atendemos
-        </p>
-        <h2 class="text-3xl font-semibold">Menor preco e mais agilidade</h2>
+        <p class="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">Quem atendemos</p>
+        <h2 class="text-3xl font-semibold">Solucoes para cada necessidade</h2>
       </div>
 
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4" id="segments-grid">
-        <!-- Motoristas Profissionais -->
-        <article class="segment-card flex h-full flex-col rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6 shadow-lg shadow-black/5">
-          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-text-muted)]">
-            Exame a partir de R$ 120,00
-          </p>
-          <h3 class="mt-3 text-2xl font-semibold text-[var(--color-text)]">
-            Motoristas Profissionais
-          </h3>
-          <div class="mt-3 space-y-2 text-sm text-[var(--color-text-muted)]">
-            <p>Atendemos categorias C, D e E com coleta agendada em mais de 300 cidades.</p>
-            <p>Pagamento facilitado em ate 3x no cartao ou boleto e laudo digital em ate 3 dias uteis apos o recebimento da amostra.</p>
-          </div>
-          <ul class="mt-4 space-y-2 text-sm text-[var(--color-text)]">
-            <li class="flex items-start gap-2">
-              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
-              <span>Voucher enviado por e-mail e WhatsApp</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
-              <span>Coleta em cabelo ou pelos conforme legislacao</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
-              <span>Suporte na hora de acessar o resultado</span>
-            </li>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="segments-grid">
+        <!-- Motoristas -->
+        <article class="segment-card flex flex-col rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6 shadow-lg">
+          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-primary)]">Renovacao CNH</p>
+          <h3 class="mt-3 text-2xl font-semibold">Motoristas Profissionais</h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">Exame obrigatorio para renovacao de CNH nas categorias C, D e E conforme Lei 13.103.</p>
+          <ul class="mt-4 flex-1 space-y-2 text-sm">
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>Voucher por WhatsApp</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>Coleta em cabelo ou pelos</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>Resultado em ate 3 dias</li>
           </ul>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="registre-se.html" class="inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] bg-transparent px-4 py-2 text-sm font-medium transition hover:bg-[var(--color-primary)]/10">
-              Comprar exame
-              <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-            </a>
-            <a href="postos-de-coletas.html" class="inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] bg-transparent px-4 py-2 text-sm font-medium transition hover:bg-[var(--color-primary)]/10">
-              Ver postos
-              <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-            </a>
-          </div>
+          <a href="https://api.whatsapp.com/send?phone=5514981189728&text=Olá! Preciso de exame para renovação de CNH." target="_blank" class="mt-6 inline-flex items-center justify-center rounded-md bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[var(--color-primary-dark)]">
+            Solicitar pelo WhatsApp
+          </a>
         </article>
 
-        <!-- Empresas e Frotas -->
-        <article class="segment-card flex h-full flex-col rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6 shadow-lg shadow-black/5">
-          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-text-muted)]">
-            Programas CLT / CAGED
-          </p>
-          <h3 class="mt-3 text-2xl font-semibold text-[var(--color-text)]">
-            Empresas e Frotas
-          </h3>
-          <div class="mt-3 space-y-2 text-sm text-[var(--color-text-muted)]">
-            <p>Planos corporativos para embarcadores, transportadoras e cooperativas com faturamento centralizado.</p>
-            <p>Integracao com RH para admissoes e desligamentos previstos na Lei do Motorista.</p>
-          </div>
-          <ul class="mt-4 space-y-2 text-sm text-[var(--color-text)]">
-            <li class="flex items-start gap-2">
-              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
-              <span>Dashboard com status dos laudos</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
-              <span>Equipe dedicada para auditorias</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
-              <span>Rede nacional de coleta assistida</span>
-            </li>
+        <!-- Empresas -->
+        <article class="segment-card flex flex-col rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6 shadow-lg">
+          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-primary)]">CLT / CAGED</p>
+          <h3 class="mt-3 text-2xl font-semibold">Empresas e Frotas</h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">Exames para admissao e desligamento de motoristas CLT conforme exigencia legal.</p>
+          <ul class="mt-4 flex-1 space-y-2 text-sm">
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>Faturamento centralizado</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>Integracao com CAGED</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>Equipe dedicada</li>
           </ul>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="contato.html" class="inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] bg-transparent px-4 py-2 text-sm font-medium transition hover:bg-[var(--color-primary)]/10">
-              Falar com comercial
-              <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-            </a>
-            <a href="parceiros.html" class="inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] bg-transparent px-4 py-2 text-sm font-medium transition hover:bg-[var(--color-primary)]/10">
-              Portal do parceiro
-              <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-            </a>
-          </div>
+          <a href="https://api.whatsapp.com/send?phone=5514981189728&text=Olá! Preciso de exames para minha empresa/frota." target="_blank" class="mt-6 inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] px-4 py-2 text-sm font-medium transition hover:bg-[var(--color-primary)]/10">
+            Falar com Comercial
+          </a>
         </article>
 
         <!-- Concursos -->
-        <article class="segment-card flex h-full flex-col rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6 shadow-lg shadow-black/5">
-          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-text-muted)]">
-            Exame para concursos
-          </p>
-          <h3 class="mt-3 text-2xl font-semibold text-[var(--color-text)]">
-            Concursos
-          </h3>
-          <div class="mt-3 space-y-2 text-sm text-[var(--color-text-muted)]">
-            <p>Exames toxicologicos para processos seletivos e concursos publicos.</p>
-            <p>Atendemos as exigencias legais para admissao em cargos publicos e privados.</p>
-          </div>
-          <ul class="mt-4 space-y-2 text-sm text-[var(--color-text)]">
-            <li class="flex items-start gap-2">
-              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
-              <span>Laudo oficial para concursos</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
-              <span>Coleta em todo territorio nacional</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
-              <span>Resultado em ate 3 dias uteis</span>
-            </li>
+        <article class="segment-card flex flex-col rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6 shadow-lg">
+          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-primary)]">Processos Seletivos</p>
+          <h3 class="mt-3 text-2xl font-semibold">Concursos Publicos</h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">Exames toxicologicos para concursos publicos e processos seletivos com laudo oficial.</p>
+          <ul class="mt-4 flex-1 space-y-2 text-sm">
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>Laudo oficial</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>Coleta em Botucatu/SP</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>Resultado em ate 3 dias</li>
           </ul>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="contato.html" class="inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] bg-transparent px-4 py-2 text-sm font-medium transition hover:bg-[var(--color-primary)]/10">
-              Solicitar exame
-              <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-            </a>
-            <a href="postos-de-coletas.html" class="inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] bg-transparent px-4 py-2 text-sm font-medium transition hover:bg-[var(--color-primary)]/10">
-              Ver postos
-              <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-            </a>
-          </div>
-        </article>
-
-        <!-- Card vazio para manter grid -->
-        <article class="segment-card flex h-full flex-col rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6 shadow-lg shadow-black/5">
-          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-text-muted)]">
-            Atendimento personalizado
-          </p>
-          <h3 class="mt-3 text-2xl font-semibold text-[var(--color-text)]">
-            Outros Servicos
-          </h3>
-          <div class="mt-3 space-y-2 text-sm text-[var(--color-text-muted)]">
-            <p>Atendemos tambem clinicas, laboratorios e postos de coleta que desejam fazer parte da nossa rede.</p>
-            <p>Oferecemos treinamento e suporte completo.</p>
-          </div>
-          <ul class="mt-4 space-y-2 text-sm text-[var(--color-text)]">
-            <li class="flex items-start gap-2">
-              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
-              <span>Treinamento especializado</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
-              <span>Kit de coleta fornecido</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
-              <span>Logistica reversa inclusa</span>
-            </li>
-          </ul>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="contato.html" class="inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] bg-transparent px-4 py-2 text-sm font-medium transition hover:bg-[var(--color-primary)]/10">
-              Saiba mais
-              <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-            </a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Differentiators Section -->
-    <section class="mx-auto max-w-6xl px-4 py-16">
-      <div class="grid gap-6 md:grid-cols-2" id="differentiators-grid">
-        <!-- Especialista em transporte -->
-        <article class="diff-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
-          <div class="flex items-center gap-3 text-[var(--color-primary)]">
-            <span class="rounded-full bg-[var(--color-primary)]/10 p-2">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
-            </span>
-            <h3 class="text-lg font-semibold text-[var(--color-text)]">
-              Especialista em transporte
-            </h3>
-          </div>
-          <p class="mt-3 text-sm text-[var(--color-text-muted)]">
-            Processos pensados para motoristas de cargas, passageiros e operadores logisticos.
-          </p>
-        </article>
-
-        <!-- Compliance garantido -->
-        <article class="diff-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
-          <div class="flex items-center gap-3 text-[var(--color-primary)]">
-            <span class="rounded-full bg-[var(--color-primary)]/10 p-2">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            </span>
-            <h3 class="text-lg font-semibold text-[var(--color-text)]">
-              Compliance garantido
-            </h3>
-          </div>
-          <p class="mt-3 text-sm text-[var(--color-text-muted)]">
-            Laboratorio acreditado ISO 17025 e reconhecido pela Lei 13.103 e Portaria 116.
-          </p>
-        </article>
-
-        <!-- Equipe dedicada -->
-        <article class="diff-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
-          <div class="flex items-center gap-3 text-[var(--color-primary)]">
-            <span class="rounded-full bg-[var(--color-primary)]/10 p-2">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-            </span>
-            <h3 class="text-lg font-semibold text-[var(--color-text)]">
-              Equipe dedicada
-            </h3>
-          </div>
-          <p class="mt-3 text-sm text-[var(--color-text-muted)]">
-            Consultores para RH e coordenadores de frota acompanhando cada exame.
-          </p>
-        </article>
-
-        <!-- Rede digital -->
-        <article class="diff-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
-          <div class="flex items-center gap-3 text-[var(--color-primary)]">
-            <span class="rounded-full bg-[var(--color-primary)]/10 p-2">
-              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-            </span>
-            <h3 class="text-lg font-semibold text-[var(--color-text)]">
-              Rede digital
-            </h3>
-          </div>
-          <p class="mt-3 text-sm text-[var(--color-text-muted)]">
-            Voucher, agendamento, resultado e faturamento 100% on-line.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Results Section -->
-    <section class="bg-[var(--color-surface)] py-16 text-[var(--color-text)]">
-      <div class="mx-auto flex max-w-5xl flex-col gap-6 px-4 text-center">
-        <p class="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">
-          Resultado online
-        </p>
-        <h2 class="text-3xl font-semibold">
-          Acesse seu laudo em poucos cliques
-        </h2>
-        <p class="text-[var(--color-text-muted)]">
-          Assim que o material chega ao laboratorio voce pode acompanhar cada etapa. Enviamos alertas por e-mail, WhatsApp e atualizamos o painel do motorista ou da empresa contratante.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <a href="resultados.html" class="inline-flex items-center justify-center rounded-md bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-white transition hover:bg-[var(--color-primary-dark)]">
-            Resultado - Acesse Aqui
+          <a href="https://api.whatsapp.com/send?phone=5514981189728&text=Olá! Preciso de exame para concurso público." target="_blank" class="mt-6 inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] px-4 py-2 text-sm font-medium transition hover:bg-[var(--color-primary)]/10">
+            Solicitar pelo WhatsApp
           </a>
-          <a href="duvidas-frequentes.html" class="inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] bg-transparent px-6 py-3 text-base font-medium transition hover:bg-[var(--color-primary)]/10">
-            Ver duvidas frequentes
+        </article>
+      </div>
+    </section>
+
+    <!-- Resultado Online Section -->
+    <section class="bg-[var(--color-primary)] py-16 text-white">
+      <div class="mx-auto flex max-w-5xl flex-col gap-6 px-4 text-center">
+        <h2 class="text-3xl font-semibold">Acesse seu Resultado Online</h2>
+        <p class="text-white/80">Acompanhe o status do seu exame e acesse o laudo diretamente pelo nosso portal.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="https://jmbio.cyberlims.com/resultados" target="_blank" class="inline-flex items-center justify-center rounded-md bg-white px-8 py-4 text-lg font-semibold text-[var(--color-primary)] transition hover:bg-white/90">
+            Resultado - Acesse Aqui
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Certifications Section -->
-    <section class="bg-[var(--color-surface)] py-16 text-[var(--color-text)]">
-      <div class="mx-auto flex max-w-5xl flex-col gap-6 px-4 text-center">
-        <p class="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">
-          Certificacoes e Acreditacoes
-        </p>
-        <h2 class="text-3xl font-semibold">
-          Credenciado com o DENATRAN
-        </h2>
-        <p class="text-[var(--color-text-muted)]">
-          Nossa acreditacao garante a conformidade com os mais altos padroes de qualidade e seguranca para exames toxicologicos.
-        </p>
+    <!-- Certificacoes Section -->
+    <section class="bg-[var(--color-surface)] py-16">
+      <div class="mx-auto max-w-5xl px-4 text-center">
+        <p class="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">Certificacoes e Acreditacoes</p>
+        <h2 class="mt-4 text-3xl font-semibold">Credenciado pelo DENATRAN</h2>
+        <p class="mt-4 text-[var(--color-text-muted)]">Nossa acreditacao garante conformidade com a Lei 13.103 e Portaria 116 do Ministerio do Trabalho para exames toxicologicos de motoristas profissionais.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-6">
+          <div class="rounded-2xl border border-[var(--color-outline)] bg-[var(--color-bg)] px-6 py-4">
+            <p class="font-semibold text-[var(--color-primary)]">DENATRAN</p>
+            <p class="text-sm text-[var(--color-text-muted)]">Credenciado</p>
+          </div>
+          <div class="rounded-2xl border border-[var(--color-outline)] bg-[var(--color-bg)] px-6 py-4">
+            <p class="font-semibold text-[var(--color-primary)]">Lei 13.103</p>
+            <p class="text-sm text-[var(--color-text-muted)]">Conformidade</p>
+          </div>
+          <div class="rounded-2xl border border-[var(--color-outline)] bg-[var(--color-bg)] px-6 py-4">
+            <p class="font-semibold text-[var(--color-primary)]">Portaria 116</p>
+            <p class="text-sm text-[var(--color-text-muted)]">Min. Trabalho</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- CTA Cards Section -->
-    <section class="mx-auto max-w-6xl px-4 py-16">
+    <!-- Procedimentos de Coleta Section -->
+    <section id="procedimentos" class="mx-auto max-w-5xl px-4 py-16">
+      <div class="text-center mb-10">
+        <p class="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">Orientacoes ao Paciente</p>
+        <h2 class="mt-4 text-3xl font-semibold">Procedimentos de Coleta</h2>
+      </div>
       <div class="grid gap-6 md:grid-cols-2">
-        <!-- Rede nacional -->
-        <article class="cta-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
-          <p class="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">
-            Rede nacional
-          </p>
-          <h3 class="text-2xl font-semibold text-[var(--color-text)]">
-            Faca parte da nossa rede de coleta
+        <div class="rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
+          <h3 class="text-lg font-semibold flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">1</span>
+            Documento com Foto
           </h3>
-          <p class="mt-3 text-sm text-[var(--color-text-muted)]">
-            Fornecemos kit de coleta, treinamento e logistica reversa para que clinicas, laboratorios e drogarias oferecam o exame toxicologico em conformidade absoluta.
-          </p>
-          <a href="cadastro-postos-de-coleta.html" class="mt-5 inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] bg-transparent px-4 py-2 text-sm font-medium transition hover:bg-[var(--color-primary)]/10">
-            Cadastre-se ja
-          </a>
-        </article>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">Comparecer com documento de identificacao com foto: <strong>CNH ou RG</strong>.</p>
+        </div>
+        <div class="rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
+          <h3 class="text-lg font-semibold flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">2</span>
+            Medicamentos Controlados
+          </h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">Se estiver usando algum <strong>medicamento controlado</strong>, trazer a receita medica.</p>
+        </div>
+      </div>
+      <div class="mt-8 text-center">
+        <a href="duvidas-frequentes.html" class="inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] px-6 py-3 font-medium transition hover:bg-[var(--color-primary)]/10">
+          Ver todas as duvidas frequentes
+        </a>
+      </div>
+    </section>
 
-        <!-- Sobre a JM -->
-        <article class="cta-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
-          <p class="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">
-            Sobre a JM Bioanalises
-          </p>
-          <h3 class="text-2xl font-semibold text-[var(--color-text)]">
-            100% dedicada ao transporte
-          </h3>
-          <p class="mt-3 text-sm text-[var(--color-text-muted)]">
-            Somos referencia em exames de larga janela desde 2012, certificados pelo INMETRO e com dezenas de cases de grandes frotas, usinas, cooperativas, empresas de onibus e transportadoras.
-          </p>
-          <a href="parceiros.html" class="mt-5 inline-flex items-center justify-center rounded-md bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[var(--color-primary-dark)]">
-            Conheca nossos programas
-          </a>
-        </article>
+    <!-- CTA Section -->
+    <section class="mx-auto max-w-6xl px-4 py-16">
+      <div class="rounded-3xl bg-gradient-to-r from-slate-900 to-slate-800 p-8 text-center text-white md:p-12">
+        <h2 class="text-3xl font-semibold">Precisa de um exame toxicologico?</h2>
+        <p class="mt-4 text-white/70">Entre em contato pelo WhatsApp e solicite agora mesmo.</p>
+        <a href="https://api.whatsapp.com/send?phone=5514981189728&text=Olá! Gostaria de informações sobre exame toxicológico." target="_blank" class="mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-green-500 px-8 py-4 text-lg font-semibold text-white transition hover:bg-green-600">
+          <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+          Falar pelo WhatsApp
+        </a>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="mt-16 border-t border-[var(--color-outline)] bg-[var(--color-surface)]/95">
-    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 md:flex-row md:justify-between">
-      <div class="max-w-lg space-y-3">
-        <p class="text-lg font-semibold text-[var(--color-text)]">
-          JM Bioanalises Exames Toxicologicos
-        </p>
-        <p class="text-sm text-[var(--color-text-muted)]">
-          Exames toxicologicos para motoristas, empresas e laboratorios com rede nacional de coleta e laudos em ate 3 dias uteis.
-        </p>
-        <div class="text-sm text-[var(--color-text-muted)]">
-          <p>Av Marechal Floriano Peixoto, 422 - Centro - CEP 18603-730 - Botucatu/SP</p>
-          <p>Telefone: +55 (14) 3881-1156</p>
-          <p>WhatsApp: +55 (14) 98118-9728</p>
-          <p>E-mail: jmtox@jmbioanalises.com.br</p>
-          <p>Horario: Segunda a sexta-feira: das 8h as 12h e das 13h as 17h, Sabado: das 8h30 as 12h30</p>
-        </div>
-      </div>
-      <div>
-        <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-text-muted)]">
-          Links rapidos
-        </p>
-        <ul class="mt-4 space-y-2 text-sm">
-          <li><a href="duvidas-frequentes.html" class="text-[var(--color-text-muted)] transition hover:text-[var(--color-text)]">Duvidas</a></li>
-          <li><a href="postos-de-coletas.html" class="text-[var(--color-text-muted)] transition hover:text-[var(--color-text)]">Postos de Coletas</a></li>
-          <li><a href="parceiros.html" class="text-[var(--color-text-muted)] transition hover:text-[var(--color-text)]">Parceiros</a></li>
-          <li><a href="contato.html" class="text-[var(--color-text-muted)] transition hover:text-[var(--color-text)]">Contato</a></li>
-          <li><a href="politica-de-privacidade.html" class="text-[var(--color-text-muted)] transition hover:text-[var(--color-text)]">Politica de Privacidade</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="border-t border-[var(--color-outline)]">
-      <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs uppercase tracking-[0.3em] text-[var(--color-text-muted)] md:flex-row md:items-center md:justify-between">
-        <p>&copy; 2022 - Todos Direitos Reservados a JM Bioanalises Exames Toxicologicos</p>
-        <p>Desenvolvido por Megaweb Solutions Ltda</p>
-      </div>
-    </div>
-  </footer>
+  <div id="footer-placeholder"></div>
 
-  <!-- WhatsApp Float Button -->
-  <a href="https://api.whatsapp.com/send?phone=5514981691254" target="_blank" class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition hover:bg-green-600 hover:scale-110" aria-label="WhatsApp">
-    <svg class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a>
-
-  <!-- Main JavaScript -->
+  <!-- Scripts -->
+  <script src="js/includes.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -26,24 +26,8 @@
 </head>
 <body class="bg-[var(--color-bg)] text-[var(--color-text)] font-sans min-h-screen">
 
-  <!-- Header -->
-  <header class="sticky top-0 z-40 border-b border-[var(--color-outline)] bg-[var(--color-header)]/95 backdrop-blur-md">
-    <div class="container mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
-      <a href="index.html" class="flex items-center gap-3">
-        <img src="imagens/logo-jm-bioanalises-branco.png" alt="JM Bioanalises" class="h-10 w-auto">
-      </a>
-      <nav class="hidden items-center gap-6 text-sm font-semibold text-[var(--color-text-muted)] lg:flex">
-        <a href="duvidas-frequentes.html" class="text-white">Duvidas</a>
-        <a href="postos-de-coletas.html" class="transition hover:text-white">Postos de Coletas</a>
-        <a href="parceiros.html" class="transition hover:text-white">Parceiros</a>
-        <a href="contato.html" class="transition hover:text-white">Contato</a>
-      </nav>
-      <div class="flex items-center gap-3">
-        <a href="resultados.html" class="inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] bg-transparent px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10">Resultado</a>
-        <a href="parceiros.html" class="inline-flex items-center justify-center rounded-md bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white transition hover:bg-[var(--color-primary-dark)]">Portal do Parceiro</a>
-      </div>
-    </div>
-  </header>
+  <!-- Header Include -->
+  <div id="header-placeholder"></div>
 
   <main class="mx-auto max-w-4xl px-4 py-16">
     <!-- Hero -->
@@ -53,7 +37,7 @@
       <p class="mt-4 text-lg text-[var(--color-text-muted)]">Exames toxicologicos a partir de <strong class="text-[var(--color-primary)]">R$ 120,00</strong>. Realize o exame em um laboratorio proximo de voce.</p>
       <div class="mt-6 flex flex-wrap justify-center gap-4">
         <a href="postos-de-coletas.html" class="inline-flex items-center justify-center rounded-md bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-white transition hover:bg-[var(--color-primary-dark)]">Ver postos de coleta</a>
-        <a href="registre-se.html" class="inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] bg-transparent px-6 py-3 text-base font-medium transition hover:bg-[var(--color-primary)]/10">Comprar exame</a>
+        <a href="https://api.whatsapp.com/send?phone=5514981189728&text=Olá! Gostaria de comprar um exame toxicológico." target="_blank" class="inline-flex items-center justify-center rounded-md border border-[var(--color-outline)] bg-transparent px-6 py-3 text-base font-medium transition hover:bg-[var(--color-primary)]/10">Comprar exame</a>
       </div>
     </section>
 
@@ -75,6 +59,28 @@
           <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-xl font-bold">3</div>
           <h3 class="font-semibold">Receba o resultado</h3>
           <p class="mt-2 text-sm text-[var(--color-text-muted)]">Acompanhe o status e receba o resultado em ate 7 dias uteis apos o recebimento da amostra.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Procedimentos de Coleta -->
+    <section class="mb-16 rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-8" id="procedimentos">
+      <h2 class="mb-6 text-2xl font-semibold text-center">Procedimentos de Coleta</h2>
+      <p class="text-center text-[var(--color-text-muted)] mb-8">Para realizar a coleta, o candidato deve apresentar:</p>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl border border-[var(--color-outline)] bg-[var(--color-bg)] p-6">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-primary)]/10">
+            <svg class="h-6 w-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold">Documento com Foto</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">CNH, RG ou outro documento oficial com foto. O documento deve estar dentro da validade e em bom estado de conservacao.</p>
+        </div>
+        <div class="rounded-2xl border border-[var(--color-outline)] bg-[var(--color-bg)] p-6">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-primary)]/10">
+            <svg class="h-6 w-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold">Receita Medica (se aplicavel)</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">Se faz uso de medicamentos controlados, traga a receita medica para registro. Isso evita resultados falso-positivos e agiliza a analise.</p>
         </div>
       </div>
     </section>
@@ -135,7 +141,7 @@
         </div>
       </div>
 
-      <div class="rounded-2xl border border-[var(--color-outline)] bg-[var(--color-surface)] overflow-hidden" id="procedimentos">
+      <div class="rounded-2xl border border-[var(--color-outline)] bg-[var(--color-surface)] overflow-hidden">
         <button @click="openFaq = openFaq === 5 ? null : 5" class="w-full flex items-center justify-between p-6 text-left font-semibold">
           <span>Como e realizada a coleta?</span>
           <svg class="h-5 w-5 transition-transform" :class="openFaq === 5 && 'rotate-180'" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -152,7 +158,7 @@
         </button>
         <div x-show="openFaq === 6" x-collapse class="px-6 pb-6 text-sm text-[var(--color-text-muted)]">
           <ol class="list-decimal pl-5 space-y-1">
-            <li>Acesse o site da JM Tox</li>
+            <li>Acesse <a href="https://jmbio.cyberlims.com/resultados" target="_blank" class="text-[var(--color-primary)] hover:underline">jmbio.cyberlims.com/resultados</a></li>
             <li>Clique no botao "RESULTADO" no canto superior direito</li>
             <li>Informe CPF e senha para acessar a area do usuario</li>
           </ol>
@@ -164,44 +170,14 @@
     <section class="mt-16 rounded-3xl bg-[var(--color-primary)] p-8 text-center text-white">
       <h2 class="text-2xl font-semibold">Ainda tem duvidas?</h2>
       <p class="mt-2 text-white/80">Nossa equipe esta pronta para ajudar voce.</p>
-      <a href="contato.html" class="mt-6 inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-base font-medium text-[var(--color-primary)] transition hover:bg-white/90">Fale conosco</a>
+      <a href="https://api.whatsapp.com/send?phone=5514981189728&text=Olá! Tenho uma dúvida sobre exame toxicológico." target="_blank" class="mt-6 inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-base font-medium text-[var(--color-primary)] transition hover:bg-white/90">Fale conosco no WhatsApp</a>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="mt-16 border-t border-[var(--color-outline)] bg-[var(--color-surface)]/95">
-    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 md:flex-row md:justify-between">
-      <div class="max-w-lg space-y-3">
-        <p class="text-lg font-semibold">JM Bioanalises Exames Toxicologicos</p>
-        <p class="text-sm text-[var(--color-text-muted)]">Exames toxicologicos para motoristas, empresas e laboratorios com rede nacional de coleta.</p>
-        <div class="text-sm text-[var(--color-text-muted)]">
-          <p>Av Marechal Floriano Peixoto, 422 - Centro - Botucatu/SP</p>
-          <p>Telefone: +55 (14) 3881-1156 | WhatsApp: +55 (14) 98118-9728</p>
-          <p>E-mail: jmtox@jmbioanalises.com.br</p>
-        </div>
-      </div>
-      <div>
-        <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-text-muted)]">Links rapidos</p>
-        <ul class="mt-4 space-y-2 text-sm">
-          <li><a href="duvidas-frequentes.html" class="text-[var(--color-text-muted)] hover:text-[var(--color-text)]">Duvidas</a></li>
-          <li><a href="postos-de-coletas.html" class="text-[var(--color-text-muted)] hover:text-[var(--color-text)]">Postos de Coletas</a></li>
-          <li><a href="parceiros.html" class="text-[var(--color-text-muted)] hover:text-[var(--color-text)]">Parceiros</a></li>
-          <li><a href="contato.html" class="text-[var(--color-text-muted)] hover:text-[var(--color-text)]">Contato</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="border-t border-[var(--color-outline)]">
-      <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs uppercase tracking-[0.3em] text-[var(--color-text-muted)] md:flex-row md:justify-between">
-        <p>&copy; 2022 - JM Bioanalises Exames Toxicologicos</p>
-        <p>Desenvolvido por Megaweb Solutions Ltda</p>
-      </div>
-    </div>
-  </footer>
+  <!-- Footer Include -->
+  <div id="footer-placeholder"></div>
 
-  <a href="https://api.whatsapp.com/send?phone=5514981691254" target="_blank" class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition hover:bg-green-600 hover:scale-110" aria-label="WhatsApp">
-    <svg class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a>
-
+  <script src="js/includes.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
