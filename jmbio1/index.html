@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR" x-data="{ theme: 'sunrise' }" :data-theme="theme">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JM Bioanálises - Exames Toxicológicos para Motoristas</title>
+  <meta name="description" content="Exames toxicológicos para motoristas, empresas e laboratórios com rede nacional de coleta e laudos em até 3 dias úteis.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[var(--color-bg)] text-[var(--color-text)] font-sans min-h-screen">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-[var(--color-outline)] bg-[var(--color-header)]/90 backdrop-blur-md">
+    <div class="container mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
+      <a href="/" class="flex items-center gap-3">
+        <img src="assets/logo-jm-bioanalises-branco.png" alt="JM Bioanálises" class="h-10 w-auto">
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden items-center gap-6 text-sm font-semibold text-[var(--color-text-muted)] lg:flex">
+        <a href="duvidas-frequentes.html" class="transition hover:text-[var(--color-text)]">Dúvidas</a>
+        <a href="postos-de-coletas.html" class="transition hover:text-[var(--color-text)]">Postos de Coletas</a>
+        <a href="parceiros.html" class="transition hover:text-[var(--color-text)]">Parceiros</a>
+        <a href="contato.html" class="transition hover:text-[var(--color-text)]">Contato</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="duvidas-frequentes.html#resultado-online" class="btn-outline text-sm">Resultado</a>
+        <a href="parceiros.html" class="btn-primary text-sm">Portal do Parceiro</a>
+
+        <!-- Theme Switcher -->
+        <div x-data="{ open: false }" class="relative">
+          <button @click="open = !open" class="p-2 rounded-full hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[var(--color-text-muted)]">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+          </button>
+          <div x-show="open" @click.away="open = false" x-transition class="absolute right-0 mt-2 w-40 rounded-xl bg-[var(--color-surface)] border border-[var(--color-outline)] shadow-lg p-2">
+            <button @click="theme = 'sunrise'; open = false" class="w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-[var(--color-primary)]/10 transition">Sunrise</button>
+            <button @click="theme = 'midnight'; open = false" class="w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-[var(--color-primary)]/10 transition">Midnight</button>
+            <button @click="theme = 'clinical'; open = false" class="w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-[var(--color-primary)]/10 transition">Clinical</button>
+            <button @click="theme = 'high-contrast'; open = false" class="w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-[var(--color-primary)]/10 transition">Alto Contraste</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div class="border-t border-[var(--color-outline)] bg-[var(--color-header)] px-4 py-3 lg:hidden">
+      <nav class="flex flex-wrap gap-3 text-sm font-semibold text-[var(--color-text-muted)]">
+        <a href="duvidas-frequentes.html" class="rounded-full border border-gray-600 px-3 py-1 transition hover:border-[var(--color-primary)] hover:text-white">Dúvidas</a>
+        <a href="postos-de-coletas.html" class="rounded-full border border-gray-600 px-3 py-1 transition hover:border-[var(--color-primary)] hover:text-white">Postos de Coletas</a>
+        <a href="parceiros.html" class="rounded-full border border-gray-600 px-3 py-1 transition hover:border-[var(--color-primary)] hover:text-white">Parceiros</a>
+        <a href="contato.html" class="rounded-full border border-gray-600 px-3 py-1 transition hover:border-[var(--color-primary)] hover:text-white">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="relative isolate overflow-hidden bg-[var(--color-bg)]">
+      <div class="relative h-[60vh]">
+        <img src="assets/imagens/caminhao1.jpg" alt="Caminhão na rodovia" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
+        <div class="absolute inset-0">
+          <div class="mx-auto flex h-full max-w-6xl flex-col gap-6 px-4 py-16 text-white lg:flex-row lg:items-center">
+            <div class="space-y-6 lg:w-3/5 hero-content">
+              <p class="text-xs uppercase tracking-[0.5em] text-orange-200">
+                Exame toxicológico para motoristas profissionais
+              </p>
+              <h1 class="text-balance text-4xl font-semibold lg:text-5xl">
+                Simples, rápido e aprovado pelos órgãos de trânsito
+              </h1>
+              <p class="text-lg text-orange-100">
+                Resultado em até <strong>3 dias úteis*</strong> após o recebimento da amostra. *Consulte disponibilidade na sua região.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <a href="registre-se.html" class="btn-primary text-base px-6 py-3">Comprar exame</a>
+                <a href="postos-de-coletas.html" class="btn-outline text-base px-6 py-3">Ver postos de coleta</a>
+              </div>
+            </div>
+            <div class="glass-panel rounded-3xl bg-white/95 p-6 text-sm text-slate-600 shadow-2xl hero-card">
+              <h2 class="text-xl font-semibold text-slate-900">
+                Por que motoristas escolhem a JM Bioanálises?
+              </h2>
+              <p class="mt-3">
+                Mais de uma década entregando exames de larga janela para caminhoneiros, ônibus rodoviários, transporte urbano e carros executivos.
+              </p>
+              <ul class="mt-4 list-disc space-y-2 pl-5 text-slate-600">
+                <li>Voucher digital liberado em minutos</li>
+                <li>Coleta monitorada com cadeia de custódia</li>
+                <li>Resultado online com suporte humano</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Segments Section -->
+    <section class="mx-auto max-w-6xl px-4 py-16">
+      <div class="mb-10 flex flex-col gap-2 text-center">
+        <p class="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">
+          Quem atendemos
+        </p>
+        <h2 class="text-3xl font-semibold">Menor preço e mais agilidade</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <!-- Motoristas Profissionais -->
+        <article class="segment-card flex h-full flex-col rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6 shadow-lg shadow-black/5">
+          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-text-muted)]">
+            Exame a partir de R$ 120,00
+          </p>
+          <h3 class="mt-3 text-2xl font-semibold text-[var(--color-text)]">
+            Motoristas Profissionais
+          </h3>
+          <div class="mt-3 space-y-2 text-sm text-[var(--color-text-muted)]">
+            <p>Atendemos categorias C, D e E com coleta agendada em mais de 300 cidades.</p>
+            <p>Pagamento facilitado em até 3x no cartão ou boleto e laudo digital em até 3 dias úteis após o recebimento da amostra.</p>
+          </div>
+          <ul class="mt-4 space-y-2 text-sm text-[var(--color-text)]">
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
+              <span>Voucher enviado por e-mail e WhatsApp</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
+              <span>Coleta em cabelo ou pelos conforme legislação</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
+              <span>Suporte na hora de acessar o resultado</span>
+            </li>
+          </ul>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="registre-se.html" class="btn-outline text-sm flex items-center gap-2">
+              Comprar exame
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+            </a>
+            <a href="postos-de-coletas.html" class="btn-outline text-sm flex items-center gap-2">
+              Ver postos
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Empresas e Frotas -->
+        <article class="segment-card flex h-full flex-col rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6 shadow-lg shadow-black/5">
+          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-text-muted)]">
+            Programas CLT / CAGED
+          </p>
+          <h3 class="mt-3 text-2xl font-semibold text-[var(--color-text)]">
+            Empresas e Frotas
+          </h3>
+          <div class="mt-3 space-y-2 text-sm text-[var(--color-text-muted)]">
+            <p>Planos corporativos para embarcadores, transportadoras e cooperativas com faturamento centralizado.</p>
+            <p>Integração com RH para admissões e desligamentos previstos na Lei do Motorista.</p>
+          </div>
+          <ul class="mt-4 space-y-2 text-sm text-[var(--color-text)]">
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
+              <span>Dashboard com status dos laudos</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
+              <span>Equipe dedicada para auditorias</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
+              <span>Rede nacional de coleta assistida</span>
+            </li>
+          </ul>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="contato.html" class="btn-outline text-sm flex items-center gap-2">
+              Falar com comercial
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+            </a>
+            <a href="app-parceiros.html" class="btn-outline text-sm flex items-center gap-2">
+              Portal do parceiro
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Laboratórios e Postos -->
+        <article class="segment-card flex h-full flex-col rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6 shadow-lg shadow-black/5">
+          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-text-muted)]">
+            Rede JM Tox
+          </p>
+          <h3 class="mt-3 text-2xl font-semibold text-[var(--color-text)]">
+            Laboratórios e Postos
+          </h3>
+          <div class="mt-3 space-y-2 text-sm text-[var(--color-text-muted)]">
+            <p>Transforme sua unidade em ponto de coleta oficial com treinamento, materiais e sistema de voucher.</p>
+            <p>Receba novos clientes da nossa base e aumente o faturamento sem investimento em equipamentos de triagem.</p>
+          </div>
+          <ul class="mt-4 space-y-2 text-sm text-[var(--color-text)]">
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
+              <span>Manual operacional completo</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
+              <span>Logística reversa inclusa</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]"></span>
+              <span>Pagamentos recorrentes e previsíveis</span>
+            </li>
+          </ul>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="cadastro-postos-de-coleta.html" class="btn-outline text-sm flex items-center gap-2">
+              Cadastrar posto
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+            </a>
+            <a href="parceiros.html" class="btn-outline text-sm flex items-center gap-2">
+              Seja parceiro
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Metrics Section -->
+    <section class="bg-[var(--color-surface)] py-16 text-[var(--color-text)]">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="grid gap-6 md:grid-cols-3">
+          <div class="metric-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-bg)] p-6 text-center">
+            <p class="text-3xl font-semibold">10+</p>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)]">anos em exames de larga janela</p>
+          </div>
+          <div class="metric-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-bg)] p-6 text-center">
+            <p class="text-3xl font-semibold">300+</p>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)]">postos de coleta homologados</p>
+          </div>
+          <div class="metric-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-bg)] p-6 text-center">
+            <p class="text-3xl font-semibold">&lt;3 dias úteis</p>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)]">prazo médio do laudo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Differentiators Section -->
+    <section class="mx-auto max-w-6xl px-4 py-16">
+      <div class="grid gap-6 md:grid-cols-2">
+        <!-- Especialista em transporte -->
+        <article class="diff-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
+          <div class="flex items-center gap-3 text-[var(--color-primary)]">
+            <span class="rounded-full bg-[var(--color-primary)]/10 p-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg>
+            </span>
+            <h3 class="text-lg font-semibold text-[var(--color-text)]">Especialista em transporte</h3>
+          </div>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">
+            Processos pensados para motoristas de cargas, passageiros e operadores logísticos.
+          </p>
+        </article>
+
+        <!-- Compliance garantido -->
+        <article class="diff-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
+          <div class="flex items-center gap-3 text-[var(--color-primary)]">
+            <span class="rounded-full bg-[var(--color-primary)]/10 p-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+            </span>
+            <h3 class="text-lg font-semibold text-[var(--color-text)]">Compliance garantido</h3>
+          </div>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">
+            Laboratório acreditado ISO 17025 e reconhecido pela Lei 13.103 e Portaria 116.
+          </p>
+        </article>
+
+        <!-- Equipe dedicada -->
+        <article class="diff-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
+          <div class="flex items-center gap-3 text-[var(--color-primary)]">
+            <span class="rounded-full bg-[var(--color-primary)]/10 p-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </span>
+            <h3 class="text-lg font-semibold text-[var(--color-text)]">Equipe dedicada</h3>
+          </div>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">
+            Consultores para RH e coordenadores de frota acompanhando cada exame.
+          </p>
+        </article>
+
+        <!-- Rede digital -->
+        <article class="diff-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
+          <div class="flex items-center gap-3 text-[var(--color-primary)]">
+            <span class="rounded-full bg-[var(--color-primary)]/10 p-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
+            </span>
+            <h3 class="text-lg font-semibold text-[var(--color-text)]">Rede digital</h3>
+          </div>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">
+            Voucher, agendamento, resultado e faturamento 100% on-line.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Results CTA Section -->
+    <section class="bg-[var(--color-surface)] py-16 text-[var(--color-text)]">
+      <div class="mx-auto flex max-w-5xl flex-col gap-6 px-4 text-center">
+        <p class="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">
+          Resultado online
+        </p>
+        <h2 class="text-3xl font-semibold">
+          Acesse seu laudo em poucos cliques
+        </h2>
+        <p class="text-[var(--color-text-muted)]">
+          Assim que o material chega ao laboratório você pode acompanhar cada etapa. Enviamos alertas por e-mail, WhatsApp e atualizamos o painel do motorista ou da empresa contratante.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="duvidas-frequentes.html#resultado-online" class="btn-primary">
+            Resultado - Clique aqui!
+          </a>
+          <a href="duvidas-frequentes.html" class="btn-outline">
+            Ver dúvidas frequentes
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Network & About Section -->
+    <section class="mx-auto max-w-6xl px-4 py-16">
+      <div class="grid gap-6 md:grid-cols-2">
+        <article class="cta-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
+          <p class="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">
+            Rede nacional
+          </p>
+          <h3 class="text-2xl font-semibold text-[var(--color-text)]">
+            Faça parte da nossa rede de coleta
+          </h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">
+            Fornecemos kit de coleta, treinamento e logística reversa para que clínicas, laboratórios e drogarias ofereçam o exame toxicológico em conformidade absoluta.
+          </p>
+          <a href="cadastro-postos-de-coleta.html" class="btn-outline mt-5 inline-block">Cadastre-se já</a>
+        </article>
+        <article class="cta-card rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
+          <p class="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">
+            Sobre a JM Bioanálises
+          </p>
+          <h3 class="text-2xl font-semibold text-[var(--color-text)]">
+            100% dedicada ao transporte
+          </h3>
+          <p class="mt-3 text-sm text-[var(--color-text-muted)]">
+            Somos referência em exames de larga janela desde 2012, certificados pelo INMETRO e com dezenas de cases de grandes frotas, usinas, cooperativas, empresas de ônibus e transportadoras.
+          </p>
+          <a href="parceiros.html" class="btn-primary mt-5 inline-block">Conheça nossos programas</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-16 border-t border-[var(--color-outline)] bg-[var(--color-surface)]/95">
+    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 md:flex-row md:justify-between">
+      <div class="max-w-lg space-y-3">
+        <p class="text-lg font-semibold text-[var(--color-text)]">
+          JM Bioanálises Exames Toxicológicos
+        </p>
+        <p class="text-sm text-[var(--color-text-muted)]">
+          Exames toxicológicos para motoristas, empresas e laboratórios com rede nacional de coleta e laudos em até 3 dias úteis.
+        </p>
+        <div class="text-sm text-[var(--color-text-muted)]">
+          <p>Rua Humberto Milanesi, 436 - Parque Residencial Primavera - CEP 18610-385 - Botucatu/SP</p>
+          <p>Telefone: +55 (14) 3881-1156</p>
+          <p>WhatsApp: +55 (14) 98169-1254</p>
+          <p>E-mail: jmtox@jmbioanalises.com.br</p>
+        </div>
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-text-muted)]">
+          Links rápidos
+        </p>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a href="duvidas-frequentes.html" class="text-[var(--color-text-muted)] transition hover:text-[var(--color-text)]">Dúvidas</a></li>
+          <li><a href="postos-de-coletas.html" class="text-[var(--color-text-muted)] transition hover:text-[var(--color-text)]">Postos de Coletas</a></li>
+          <li><a href="parceiros.html" class="text-[var(--color-text-muted)] transition hover:text-[var(--color-text)]">Parceiros</a></li>
+          <li><a href="contato.html" class="text-[var(--color-text-muted)] transition hover:text-[var(--color-text)]">Contato</a></li>
+          <li><a href="politica-de-privacidade.html" class="text-[var(--color-text-muted)] transition hover:text-[var(--color-text)]">Política de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-[var(--color-outline)]">
+      <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs uppercase tracking-[0.3em] text-[var(--color-text-muted)] md:flex-row md:items-center md:justify-between">
+        <p>© 2022 - Todos Direitos Reservados a JM Bioanálises Exames Toxicológicos</p>
+        <p>Desenvolvido por HD Marketing Digital</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>
