@@ -440,7 +440,110 @@ body {
 }
 
 /* ============================================
-   MINI HERO - Page Headers
+   PAGE HERO - Compact Header with Image
+   ============================================ */
+.page-hero {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  margin-top: 60px; /* header height */
+}
+
+@media (min-width: 768px) {
+  .page-hero {
+    height: 320px;
+  }
+}
+
+.page-hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.3) 100%);
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-hero-badge {
+  display: inline-block;
+  padding: 0.25rem 0.875rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-primary-light);
+  background: rgba(244, 165, 116, 0.15);
+  border: 1px solid rgba(244, 165, 116, 0.25);
+  border-radius: 50px;
+  margin-bottom: 0.75rem;
+}
+
+.page-hero h1 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.page-hero p {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+/* Optional info box on hero */
+.page-hero-box {
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.page-hero-box strong {
+  color: var(--color-primary-light);
+}
+
+/* Bottom gradient fade */
+.page-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(transparent, var(--color-bg));
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ============================================
+   MINI HERO - Legacy (kept for compatibility)
    ============================================ */
 .mini-hero {
   position: relative;
