@@ -10,11 +10,12 @@
   },
   contacts: {
     phone: "+55 (14) 3881-1156",
-    mobile: "+55 (14) 98169-1254",
+    mobile: "+55 (14) 98118-9728",
     email: "jmtox@jmbioanalises.com.br",
   },
+  businessHours: "Segunda a sexta-feira: das 8h às 12h e das 13h às 17h, Sábado: das 8h30 às 12h30",
   address:
-    "Rua Humberto Milanesi, 436 - Parque Residencial Primavera - CEP 18610-385 - Botucatu/SP",
+    "Av Marechal Floriano Peixoto, 422 - Centro - CEP 18603-730 - Botucatu/SP",
 };
 
 export type SiteConfig = typeof siteConfig;

@@ -26,6 +26,7 @@ export function Footer() {
             <p>Telefone: {siteConfig.contacts.phone}</p>
             <p>WhatsApp: {siteConfig.contacts.mobile}</p>
             <p>E-mail: {siteConfig.contacts.email}</p>
+            <p>Horário: {siteConfig.businessHours}</p>
           </div>
         </div>
         <div>
@@ -51,7 +52,7 @@ export function Footer() {
           <p>
             © 2022 - Todos Direitos Reservados a JM Bioanálises Exames Toxicológicos
           </p>
-          <p>Desenvolvido por HD Marketing Digital</p>
+          <p>Desenvolvido por Megaweb Solutions Ltda</p>
         </div>
       </div>
     </footer>

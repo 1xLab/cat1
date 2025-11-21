@@ -42,29 +42,25 @@ const segments = [
     ],
   },
   {
-    title: "Laboratórios e Postos",
-    highlight: "Rede JM Tox",
+    title: "Concursos",
+    highlight: "Exame para concursos",
     body: [
-      "Transforme sua unidade em ponto de coleta oficial com treinamento, materiais e sistema de voucher.",
-      "Receba novos clientes da nossa base e aumente o faturamento sem investimento em equipamentos de triagem.",
+      "Exames toxicológicos para processos seletivos e concursos públicos.",
+      "Atendemos às exigências legais para admissão em cargos públicos e privados.",
     ],
     bullets: [
-      "Manual operacional completo",
-      "Logística reversa inclusa",
-      "Pagamentos recorrentes e previsíveis",
+      "Laudo oficial para concursos",
+      "Coleta em todo território nacional",
+      "Resultado em até 3 dias úteis",
     ],
     ctas: [
-      { label: "Cadastrar posto", href: "/cadastro-postos-de-coleta" },
-      { label: "Seja parceiro", href: "/parceiros" },
+      { label: "Solicitar exame", href: "/contato" },
+      { label: "Ver postos", href: "/postos-de-coletas" },
     ],
   },
 ];
 
-const metrics = [
-  { value: "10+", label: "anos em exames de larga janela" },
-  { value: "300+", label: "postos de coleta homologados" },
-  { value: "<3 dias úteis", label: "prazo médio do laudo" },
-];
+const metrics = [];
 
 const differentiators = [
   {
@@ -151,7 +147,7 @@ export default function HomePage() {
           </p>
           <h2 className="text-3xl font-semibold">Menor preço e mais agilidade</h2>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {segments.map((segment) => (
             <article
               key={segment.title}
@@ -187,24 +183,6 @@ export default function HomePage() {
               </div>
             </article>
           ))}
-        </div>
-      </section>
-
-      <section className="bg-[var(--color-surface)] py-16 text-[var(--color-text)]">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="grid gap-6 md:grid-cols-3">
-            {metrics.map((metric) => (
-              <div
-                key={metric.label}
-                className="rounded-3xl border border-[var(--color-outline)] bg-[var(--color-bg)] p-6 text-center"
-              >
-                <p className="text-3xl font-semibold">{metric.value}</p>
-                <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                  {metric.label}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -246,14 +224,28 @@ export default function HomePage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button asChild>
-              <Link href="/duvidas-frequentes#resultado-online">
-                Resultado – Clique aqui!
+              <Link href="/resultados">
+                Resultado – Acesse Aqui
               </Link>
             </Button>
             <Button variant="outline" asChild>
               <Link href="/duvidas-frequentes">Ver dúvidas frequentes</Link>
             </Button>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-[var(--color-surface)] py-16 text-[var(--color-text)]">
+        <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 text-center">
+          <p className="text-xs uppercase tracking-[0.4em] text-[var(--color-text-muted)]">
+            Certificações e Acreditações
+          </p>
+          <h2 className="text-3xl font-semibold">
+            Credenciado com o DENATRAN
+          </h2>
+          <p className="text-[var(--color-text-muted)]">
+            Nossa acreditação garante a conformidade com os mais altos padrões de qualidade e segurança para exames toxicológicos.
+          </p>
         </div>
       </section>
 

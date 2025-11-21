@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 const illustration = "/imagens/illustration-duvidas-v3.svg";
+const procedimentosImage = "/imagens/illustration-postos-v3.svg";
 
 const faqs = [
   {
@@ -64,6 +65,33 @@ export default function DuvidasPage() {
             sizes="(min-width: 768px) 320px, 100vw"
           />
         </div>
+      </div>
+      <div id="procedimentos" className="mt-10 rounded-3xl border border-[var(--color-outline)] bg-[var(--color-surface)] p-6">
+        <h2 className="text-2xl font-semibold text-[var(--color-text)] mb-4">
+          Procedimentos de Coleta
+        </h2>
+        <p className="text-[var(--color-text-muted)] mb-4">
+          Orientações importantes para o dia da coleta do exame toxicológico.
+        </p>
+        <div className="mb-6 flex justify-center">
+          <Image
+            src={procedimentosImage}
+            alt="Ilustração Procedimentos de Coleta"
+            width={200}
+            height={150}
+            className="rounded-lg"
+          />
+        </div>
+        <ul className="space-y-2 text-sm text-[var(--color-text)]">
+          <li className="flex items-start gap-2">
+            <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]" />
+            <span>Documento com Foto/CNH</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--color-primary)]" />
+            <span>Se estiver usando algum medicamento controlado, trazer receita médica</span>
+          </li>
+        </ul>
       </div>
       <div className="mt-10 space-y-4">
         {faqs.map((faq) => (

@@ -7,6 +7,7 @@ const channels = [
   { label: "Telefone fixo", value: siteConfig.contacts.phone },
   { label: "WhatsApp", value: siteConfig.contacts.mobile },
   { label: "E-mail", value: siteConfig.contacts.email },
+  { label: "Horário de Funcionamento", value: siteConfig.businessHours },
 ];
 
 export const metadata: Metadata = {

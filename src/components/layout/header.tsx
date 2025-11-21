@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const navItems = [
   { label: "Dúvidas", href: "/duvidas-frequentes" },
+  { label: "Procedimentos de Coleta", href: "/duvidas-frequentes#procedimentos" },
   { label: "Postos de Coletas", href: "/postos-de-coletas" },
   { label: "Parceiros", href: "/parceiros" },
   { label: "Contato", href: "/contato" },
@@ -38,7 +39,7 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-3">
           <Button asChild variant="outline" size="sm">
-            <Link href="/duvidas-frequentes#resultado-online">Resultado</Link>
+            <Link href="/resultados">Resultado</Link>
           </Button>
           <Button asChild size="sm">
             <Link href="/parceiros">Portal do Parceiro</Link>

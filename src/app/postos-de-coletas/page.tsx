@@ -3,11 +3,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 
 const states = [
-  { sigla: "SP", cidades: ["Botucatu", "Campinas", "Sorocaba", "São Paulo"] },
-  { sigla: "PR", cidades: ["Curitiba", "Londrina", "Maringá"] },
-  { sigla: "SC", cidades: ["Florianópolis", "Joinville"] },
-  { sigla: "MG", cidades: ["Uberlândia", "Belo Horizonte"] },
-  { sigla: "BA", cidades: ["Salvador", "Feira de Santana"] },
+  { sigla: "SP", cidades: ["Botucatu (Matriz)"] },
 ];
 
 export const metadata: Metadata = {
