@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JMBio | Laboratório de Toxicologia</title>
+    <meta
+      name="description"
+      content="Laboratório JMBio com análises toxicológicas avançadas, integrações digitais e atendimento premium."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f5f7fb;
+        --card: #ffffff;
+        --primary: #0369a1;
+        --secondary: #0d9488;
+        --text: #0f172a;
+        --muted: #64748b;
+        --panel-from: #0f172a;
+        --panel-to: #1e3a8a;
+      }
+      body[data-theme="dark"] {
+        --bg: #111436;
+        --card: rgba(255, 255, 255, 0.08);
+        --primary: #f97316;
+        --secondary: #facc15;
+        --text: #fefefe;
+        --muted: #d4ddff;
+        --panel-from: #251d71;
+        --panel-to: #5330d4;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(8px);
+        background: rgba(245, 247, 251, 0.9);
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+        transition: box-shadow 0.2s ease;
+      }
+      header.scrolled {
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        min-height: 74px;
+      }
+      nav {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+      nav a {
+        color: var(--muted);
+        text-decoration: none;
+        font-weight: 500;
+        position: relative;
+        transition: color 0.2s ease;
+      }
+      nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -6px;
+        height: 3px;
+        border-radius: 999px;
+        background: var(--primary);
+        opacity: 0;
+        transform: scaleX(0);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      nav a.active,
+      nav a:hover {
+        color: var(--primary);
+      }
+      nav a.active::after,
+      nav a:hover::after {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+      .menu-toggle {
+        display: none;
+        border: none;
+        background: var(--card);
+        border-radius: 999px;
+        padding: 8px 10px;
+        box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+      }
+      .menu-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--text);
+        margin-bottom: 5px;
+        border-radius: 999px;
+      }
+      .mobile-nav {
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 32px;
+        padding: 80px 0 40px;
+        align-items: center;
+      }
+      .badge {
+        display: inline-flex;
+        border-radius: 999px;
+        padding: 6px 14px;
+        background: rgba(3, 105, 161, 0.15);
+        color: var(--primary);
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        margin: 16px 0;
+      }
+      p {
+        line-height: 1.6;
+        color: var(--muted);
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 20px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 12px 24px;
+        font-weight: 600;
+        border: 1px solid transparent;
+        cursor: pointer;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(3, 105, 161, 0.25);
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+      }
+      .btn-outline {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+      .stats {
+        display: flex;
+        gap: 24px;
+        margin-top: 28px;
+      }
+      .stats div span {
+        display: block;
+        font-size: 32px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .panel {
+        background: linear-gradient(135deg, var(--panel-from), var(--panel-to));
+        color: #fff;
+        border-radius: 32px;
+        padding: 32px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 25px 40px rgba(15, 23, 42, 0.3);
+      }
+      .panel img {
+        width: 100%;
+        border-radius: 20px;
+        margin-bottom: 20px;
+      }
+      section {
+        padding: 60px 0;
+      }
+      .grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+      .card {
+        background: var(--card);
+        border-radius: 24px;
+        padding: 24px;
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        box-shadow: 0 20px 35px rgba(15, 23, 42, 0.12);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 30px 45px rgba(15, 23, 42, 0.18);
+      }
+      .card ul {
+        padding-left: 18px;
+        margin-top: 12px;
+        color: var(--muted);
+      }
+      .tag {
+        display: inline-flex;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(3, 105, 161, 0.1);
+        color: var(--primary);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        margin-bottom: 12px;
+      }
+      .partners {
+        background: rgba(3, 105, 161, 0.05);
+        border-top: 1px solid rgba(15, 23, 42, 0.08);
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      }
+      .partners p {
+        text-align: center;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+      .marquee {
+        overflow: hidden;
+        position: relative;
+        margin-top: 24px;
+      }
+      .marquee-track {
+        display: inline-flex;
+        gap: 48px;
+        animation: marquee 18s linear infinite;
+        white-space: nowrap;
+      }
+      .marquee-track span {
+        font-weight: 600;
+        color: rgba(15, 23, 42, 0.7);
+        font-size: 1.1rem;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .map-switcher {
+        margin-top: 28px;
+        display: grid;
+        gap: 16px;
+      }
+      .map-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .map-buttons button {
+        border-radius: 999px;
+        border: 1px solid rgba(15, 23, 42, 0.15);
+        padding: 10px 18px;
+        background: var(--card);
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--muted);
+        transition: all 0.2s ease;
+      }
+      .map-buttons button.active {
+        background: var(--primary);
+        color: #fff;
+        border-color: transparent;
+      }
+      .map-display iframe {
+        width: 100%;
+        height: 320px;
+        border: 0;
+        border-radius: 24px;
+        box-shadow: 0 25px 40px rgba(15, 23, 42, 0.15);
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+      input,
+      textarea {
+        border-radius: 14px;
+        border: 1px solid rgba(15, 23, 42, 0.12);
+        padding: 12px 14px;
+        font-size: 1rem;
+        font-family: inherit;
+        background: rgba(255, 255, 255, 0.95);
+      }
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      .error {
+        color: #dc2626;
+        font-size: 0.8rem;
+        min-height: 16px;
+        display: block;
+      }
+      .slider-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .slider-controls {
+        display: flex;
+        gap: 12px;
+      }
+      .slider-controls button {
+        border: 1px solid rgba(15, 23, 42, 0.12);
+        background: var(--card);
+        border-radius: 999px;
+        width: 42px;
+        height: 42px;
+        cursor: pointer;
+      }
+      .insights-slider {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(260px, 1fr);
+        gap: 20px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding-bottom: 12px;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      body:not(.js-enhanced) .reveal {
+        opacity: 1;
+        transform: none;
+      }
+      .cta {
+        background: linear-gradient(135deg, #0f172a, #0369a1);
+        color: white;
+        border-radius: 32px;
+        padding: 48px;
+        text-align: center;
+      }
+      footer {
+        background: #0f172a;
+        color: white;
+        padding: 40px 0;
+        margin-top: 40px;
+      }
+      footer p {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .theme-switcher {
+        display: flex;
+        gap: 8px;
+        padding: 10px;
+        background: var(--card);
+        border-radius: 999px;
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      }
+      .theme-switcher button {
+        border: none;
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-weight: 600;
+        cursor: pointer;
+        background: transparent;
+        color: var(--muted);
+        transition: all 0.2s ease;
+      }
+      .theme-switcher button.active {
+        background: var(--primary);
+        color: #fff;
+      }
+      .theme-brand {
+        display: none;
+        margin-top: 18px;
+      }
+      body[data-theme="dark"] .theme-brand {
+        display: block;
+      }
+      .theme-brand img {
+        max-width: 220px;
+        border-radius: 18px;
+        box-shadow: 0 15px 30px rgba(15, 23, 42, 0.35);
+      }
+      body[data-theme="dark"] header {
+        background: rgba(17, 20, 54, 0.9);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      body[data-theme="dark"] nav a {
+        color: rgba(255, 255, 255, 0.8);
+      }
+      body[data-theme="dark"] .mobile-nav a {
+        color: rgba(255, 255, 255, 0.9);
+      }
+      body[data-theme="dark"] .card {
+        color: rgba(255, 255, 255, 0.92);
+      }
+      body[data-theme="dark"] .card p,
+      body[data-theme="dark"] .card li {
+        color: rgba(226, 232, 255, 0.9);
+      }
+      body[data-theme="dark"] .partners {
+        background: rgba(24, 28, 74, 0.8);
+      }
+      body[data-theme="dark"] .partners p {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      body[data-theme="dark"] .btn-outline {
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.6);
+      }
+      body[data-theme="dark"] .btn-outline:hover {
+        border-color: #f97316;
+      }
+      body[data-theme="dark"] footer {
+        background: #0d1030;
+      }
+      @media (max-width: 768px) {
+        nav {
+          display: none;
+        }
+        .menu-toggle {
+          display: inline-flex;
+        }
+        .mobile-nav {
+          display: flex;
+        }
+        .header-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 16px 0;
+        }
+        .stats {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body data-theme="light">
+    <header>
+      <div class="container header-inner">
+        <div style="display: flex; align-items: center; gap: 16px; width: 100%; justify-content: space-between">
+          <strong>JMBio Lab</strong>
+          <button class="menu-toggle" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        <nav aria-label="Menu principal">
+          <a href="#servicos">Serviços</a>
+          <a href="#diferenciais">Diferenciais</a>
+          <a href="#unidades">Unidades</a>
+          <a href="#conteudo">Blog</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <a class="btn btn-primary" href="#contato">Solicitar proposta</a>
+        <div class="theme-switcher" aria-label="Alternar temas">
+          <button type="button" data-theme-option="light" class="active" onclick="applyTheme('light')">
+            Claro
+          </button>
+          <button type="button" data-theme-option="dark" onclick="applyTheme('dark')">
+            Bio Análises
+          </button>
+        </div>
+        <div class="mobile-nav" aria-label="Menu mobile">
+          <a href="#servicos">Serviços</a>
+          <a href="#diferenciais">Diferenciais</a>
+          <a href="#unidades">Unidades</a>
+          <a href="#conteudo">Blog</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="container hero reveal" id="topo">
+        <div>
+          <div class="badge">Laboratório de Toxicologia</div>
+          <h1>Toxicologia de alta performance com integrações digitais</h1>
+          <p>
+            Análises cromatográficas avançadas, instrumentação redundante e integrações em APIs seguras para ERPs, RH
+            e hospitais.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#servicos">Explorar portfólio</a>
+            <a class="btn btn-outline" href="https://api.whatsapp.com/send?phone=551199998888" target="_blank"
+              >Falar com especialista</a
+            >
+          </div>
+          <div class="stats">
+            <div data-value="120"><span>120+</span> amostras/ano</div>
+            <div data-value="2" data-suffix="h"><span>&lt;2h</span> SLA crítico</div>
+            <div data-value="180"><span>180+</span> clientes ativos</div>
+          </div>
+        </div>
+        <div class="panel">
+          <img src="hero-lab.svg" alt="Painel cromatográfico" loading="lazy" />
+          <p style="opacity: 0.8; font-size: 14px">
+            Pipeline analítico com GC-MS/MS, LC-HRMS e alertas críticos em tempo real.
+          </p>
+          <div class="theme-brand">
+            <img src="Logo.png" alt="Marca JM Bioanalises" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <section id="servicos" class="container reveal">
+        <div class="tag">Portfólio científico</div>
+        <h2>Serviços toxicológicos</h2>
+        <p>Protocolos validados, cadeia de custódia digital e integrações com sistemas corporativos.</p>
+        <div class="grid">
+          <div class="card">
+            <strong>Toxicologia Ocupacional</strong>
+            <p>Monitoramento de exposição com GC-MS/MS, ICP-MS e relatórios com benchmarks internacionais.</p>
+            <ul>
+              <li>GC-MS/MS</li>
+              <li>LC-HRMS</li>
+              <li>ICP-MS</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Painel Drogas de Abuso</strong>
+            <p>Triagem e confirmação cromatográfica com cadeia de custódia e integrações DOT/ANVISA.</p>
+            <ul>
+              <li>Triagem imunológica</li>
+              <li>Confirmação GC-MS</li>
+              <li>Alertas automáticos</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Toxicologia Clínica</strong>
+            <p>Plantão 24/7 para hospitais com dashboards e validação médica imediata.</p>
+            <ul>
+              <li>Resultados críticos em 2h</li>
+              <li>Integração HL7</li>
+              <li>Equipe médica dedicada</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Consultoria Regulatória</strong>
+            <p>Programas de compliance toxicológico, POPs e auditorias independentes.</p>
+            <ul>
+              <li>Planos NR-7</li>
+              <li>Audit trails</li>
+              <li>Treinamentos customizados</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="diferenciais" class="container reveal">
+        <div class="tag">Diferenciais</div>
+        <h2>Por que JMBio</h2>
+        <div class="grid">
+          <div class="card">
+            <strong>Instrumentação Tier 1</strong>
+            <p>GC/LC Triple Quad, ICP-MS e robôs de preparo com monitoramento remoto.</p>
+          </div>
+          <div class="card">
+            <strong>Compliance garantido</strong>
+            <p>ISO 17025, ANVISA e rastreabilidade digital.</p>
+          </div>
+          <div class="card">
+            <strong>Time multidisciplinar</strong>
+            <p>Toxicologistas, biomédicos e engenheiros com pós-graduação.</p>
+          </div>
+          <div class="card">
+            <strong>Integrações abertas</strong>
+            <p>APIs REST, SSO e conectores com ERPs e plataformas de RH.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="unidades" class="container reveal">
+        <div class="tag">Rede JMBio</div>
+        <h2>Unidades e coleta</h2>
+        <div class="grid" id="unitsGrid"></div>
+        <div class="map-switcher">
+          <div class="map-buttons" id="mapButtons"></div>
+          <div class="map-display">
+            <iframe id="mapFrame" title="Mapa interativo JMBio" loading="lazy"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section class="partners reveal">
+        <div class="container">
+          <p>Confiam na JMBio</p>
+          <div class="marquee">
+            <div class="marquee-track" id="partnersTrack"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container reveal" id="conteudo">
+        <div class="slider-header">
+          <div>
+            <div class="tag">Conteúdo</div>
+            <h2>Insights e publicações</h2>
+          </div>
+          <div class="slider-controls">
+            <button type="button" aria-label="Voltar posts" id="slidePrev">‹</button>
+            <button type="button" aria-label="Avançar posts" id="slideNext">›</button>
+          </div>
+        </div>
+        <div class="insights-slider" id="insightsSlider"></div>
+      </section>
+
+      <section class="container cta reveal" id="contato">
+        <div class="tag" style="color: white; background: rgba(255, 255, 255, 0.2)">Atendimento</div>
+        <h2>Ative um laboratório científico na sua operação</h2>
+        <p style="color: rgba(255, 255, 255, 0.85)">
+          Descreva volumes, prazos e integrações desejadas para receber um plano completo em até 30 minutos úteis.
+        </p>
+        <div class="grid" style="gap: 32px; margin-top: 32px">
+          <div class="card">
+            <form id="contactForm" novalidate>
+              <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px">
+                <div>
+                  <label for="name">Nome completo</label>
+                  <input id="name" name="name" type="text" placeholder="Ex.: Júlia Moreira" required />
+                  <span class="error" data-error-for="name"></span>
+                </div>
+                <div>
+                  <label for="company">Empresa</label>
+                  <input id="company" name="company" type="text" placeholder="Nome da empresa" />
+                </div>
+              </div>
+              <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px">
+                <div>
+                  <label for="email">E-mail corporativo</label>
+                  <input id="email" name="email" type="email" placeholder="voce@empresa.com.br" required />
+                  <span class="error" data-error-for="email"></span>
+                </div>
+                <div>
+                  <label for="phone">Telefone</label>
+                  <input id="phone" name="phone" type="tel" placeholder="(11) 99999-0000" required />
+                  <span class="error" data-error-for="phone"></span>
+                </div>
+              </div>
+              <div>
+                <label for="message">Resumo do projeto</label>
+                <textarea id="message" name="message" placeholder="Volumes, matrizes, SLAs desejados" required></textarea>
+                <span class="error" data-error-for="message"></span>
+              </div>
+              <button class="btn btn-primary" type="submit">Enviar briefing</button>
+              <p class="error" id="formStatus"></p>
+            </form>
+          </div>
+          <div style="align-self: center; text-align: center">
+            <p class="badge" style="background: rgba(255, 255, 255, 0.15); color: #fff">Canais diretos</p>
+            <p style="color: rgba(255, 255, 255, 0.85)">
+              Plantão científico 24/7 para emergências e integração técnica.
+            </p>
+            <div class="actions" style="justify-content: center">
+              <a class="btn btn-outline" href="tel:+551130301313">Central científica</a>
+              <a class="btn btn-primary" href="mailto:contato@jmbio.com.br">Enviar briefing por e-mail</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          © <span id="year"></span> JMBio Laboratório de Toxicologia — ISO 17025 • ANVISA • CAP Proficiency
+        </p>
+        <p>Av. Eusébio Matoso, 890 - São Paulo/SP • contato@jmbio.com.br</p>
+      </div>
+    </footer>
+
+    <script>
+      document.body.classList.add("js-enhanced");
+      const header = document.querySelector("header");
+      const menuToggle = document.querySelector(".menu-toggle");
+      const mobileNav = document.querySelector(".mobile-nav");
+      const navLinks = Array.from(document.querySelectorAll('nav a[href^="#"]'));
+      const mobileLinks = Array.from(document.querySelectorAll('.mobile-nav a[href^="#"]'));
+      const allLinks = [...navLinks, ...mobileLinks];
+      const sections = Array.from(document.querySelectorAll("main section[id]"));
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      menuToggle?.addEventListener("click", () => {
+        mobileNav?.classList.toggle("show");
+      });
+
+      allLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const hash = link.getAttribute("href");
+          if (hash && hash.startsWith("#")) {
+            event.preventDefault();
+            document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+            mobileNav?.classList.remove("show");
+          }
+        });
+      });
+
+      function highlightNav() {
+        const scrollPos = window.scrollY + 140;
+        let currentId = sections[0]?.id;
+        sections.forEach((section) => {
+          if (scrollPos >= section.offsetTop) {
+            currentId = section.id;
+          }
+        });
+        navLinks.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
+        });
+      }
+
+      window.addEventListener("scroll", () => {
+        header.classList.toggle("scrolled", window.scrollY > 20);
+        highlightNav();
+      });
+      highlightNav();
+
+      const supportsObserver = "IntersectionObserver" in window;
+      if (supportsObserver) {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        document.querySelectorAll(".reveal").forEach((section) => revealObserver.observe(section));
+      } else {
+        document.querySelectorAll(".reveal").forEach((section) => section.classList.add("visible"));
+      }
+
+      const stats = document.querySelectorAll(".stats div");
+      let statsAnimated = false;
+      function animateStats() {
+        if (statsAnimated) return;
+        statsAnimated = true;
+        stats.forEach((stat) => {
+            const value = Number(stat.dataset.value || stat.getAttribute("data-value") || "0");
+            const suffix = stat.dataset.suffix || stat.getAttribute("data-suffix") || "+";
+            const target = stat.querySelector("span");
+            if (!target) return;
+            const finalText = suffix === "h" ? "<2h" : `${value}+`;
+            target.textContent = suffix === "h" ? "<1h" : "0+";
+            const duration = 1500;
+            const start = performance.now();
+            function tick(now) {
+              const progress = Math.min((now - start) / duration, 1);
+              let current = Math.floor(progress * value);
+              if (suffix === "h") {
+                target.textContent = progress < 1 ? `<${Math.max(current, 1)}h` : finalText;
+              } else {
+                target.textContent = `${current}${suffix}`;
+              }
+              if (progress < 1) requestAnimationFrame(tick);
+              else target.textContent = finalText;
+            }
+            requestAnimationFrame(tick);
+        });
+      }
+      if (supportsObserver) {
+        const statsObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) animateStats();
+            });
+          },
+          { threshold: 0.4 }
+        );
+        const statsEl = document.querySelector(".stats");
+        if (statsEl) statsObserver.observe(statsEl);
+      } else {
+        animateStats();
+      }
+
+      const units = [
+        {
+          name: "Laboratório Central SP",
+          address: "Av. Eusébio Matoso, 890",
+          city: "São Paulo / SP",
+          phone: "(11) 3040-4040",
+          map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.873473932853!2d-46.69900912378999!3d-23.57204956264654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce573cc604544f%3A0xc6d970c7c1b3f!2sAv.%20Eus%C3%A9bio%20Matoso%2C%20890%20-%20Pinheiros%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1708378123456!5m2!1spt-BR!2sbr",
+        },
+        {
+          name: "Posto Campinas",
+          address: "Rua Doutor Ricardo, 455",
+          city: "Campinas / SP",
+          phone: "(19) 3202-2020",
+          map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3662.2885197515865!2d-47.058013323796635!3d-22.901934579258548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8c8aab9b23df7%3A0x22c52b76673f!2sR.%20Dr.%20Ricardo%2C%20455%20-%20Cambu%C3%AD%2C%20Campinas%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1708378223233!5m2!1spt-BR!2sbr",
+        },
+        {
+          name: "Posto Rio de Janeiro",
+          address: "Rua do Carmo, 25",
+          city: "Rio de Janeiro / RJ",
+          phone: "(21) 3505-9090",
+          map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.381361108699!2d-43.180780123812404!3d-22.903516438078262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997f59ea76cfb9%3A0x5302d14d8b0c84ce!2sR.%20do%20Carmo%2C%2025%20-%20Centro%2C%20Rio%20de%20Janeiro%20-%20RJ!5e0!3m2!1spt-BR!2sbr!4v1708378352005!5m2!1spt-BR!2sbr",
+        },
+      ];
+
+      const unitsGrid = document.getElementById("unitsGrid");
+      unitsGrid.innerHTML = units
+        .map(
+          (unit) => `
+            <div class="card">
+              <strong>${unit.name}</strong>
+              <p>${unit.address}</p>
+              <p>${unit.city}</p>
+              <p><strong>Tel:</strong> ${unit.phone}</p>
+            </div>
+          `
+        )
+        .join("");
+
+      const mapButtons = document.getElementById("mapButtons");
+      const mapFrame = document.getElementById("mapFrame");
+      function setMap(index) {
+        if (!mapFrame) return;
+        mapFrame.src = units[index].map;
+        mapButtons
+          ?.querySelectorAll("button")
+          .forEach((btn, idx) => btn.classList.toggle("active", idx === index));
+      }
+      units.forEach((unit, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = unit.city;
+        button.addEventListener("click", () => setMap(index));
+        mapButtons?.appendChild(button);
+      });
+      setMap(0);
+
+      const partners = ["Petrovia", "BioAtlas", "Energix", "Vortex Mining", "Aurea Labs", "BlueWave", "SignalChem"];
+      const partnersTrack = document.getElementById("partnersTrack");
+      partnersTrack.innerHTML = partners.concat(partners).map((logo) => `<span>${logo}</span>`).join("");
+
+      const posts = [
+        {
+          title: "Monitoramento inteligente para programas NR-7",
+          excerpt: "Unifique histórico toxicológico com dashboards e alertas preventivos.",
+          tag: "Pesquisa aplicada",
+        },
+        {
+          title: "GC-MS/MS ou LC-EMS? Qual caminho escolher",
+          excerpt: "Comparativo prático entre técnicas em matrizes complexas.",
+          tag: "Tecnologia",
+        },
+        {
+          title: "Checklist toxicológico para transportadoras",
+          excerpt: "Pontos críticos avaliados pela ANTT e como evitamos não conformidades.",
+          tag: "Regulatório",
+        },
+        {
+          title: "Integrações seguras com ERPs e prontuários",
+          excerpt: "Como conectamos APIs REST e HL7 com autenticação moderna.",
+          tag: "Integrações",
+        },
+      ];
+      const insightsSlider = document.getElementById("insightsSlider");
+      insightsSlider.innerHTML = posts
+        .map(
+          (post) => `
+            <div class="card">
+              <p class="tag" style="margin-bottom: 8px">${post.tag}</p>
+              <strong style="display:block; font-size:1.1rem">${post.title}</strong>
+              <p style="margin-top:8px">${post.excerpt}</p>
+              <a href="#contato" class="btn btn-outline" style="margin-top:16px; padding:8px 16px">Ver detalhes</a>
+            </div>
+          `
+        )
+        .join("");
+      document.getElementById("slidePrev")?.addEventListener("click", () => {
+        insightsSlider.scrollBy({ left: -insightsSlider.clientWidth * 0.7, behavior: "smooth" });
+      });
+      document.getElementById("slideNext")?.addEventListener("click", () => {
+        insightsSlider.scrollBy({ left: insightsSlider.clientWidth * 0.7, behavior: "smooth" });
+      });
+
+      const contactForm = document.getElementById("contactForm");
+      const statusEl = document.getElementById("formStatus");
+      contactForm?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(contactForm);
+        const errors = {};
+        const name = data.get("name")?.toString().trim() || "";
+        const email = data.get("email")?.toString().trim() || "";
+        const phone = data.get("phone")?.toString().trim() || "";
+        const message = data.get("message")?.toString().trim() || "";
+        if (name.length < 3) errors.name = "Informe seu nome completo.";
+        if (!/^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\\.)+[A-Za-z]{2,}$/i.test(email))
+          errors.email = "E-mail inválido.";
+        if (phone.replace(/\\D/g, "").length < 10) errors.phone = "Telefone inválido.";
+        if (message.length < 10) errors.message = "Detalhe melhor o projeto.";
+        ["name", "email", "phone", "message"].forEach((field) => {
+          const errorSpan = contactForm.querySelector(`[data-error-for=\"${field}\"]`);
+          if (errorSpan) errorSpan.textContent = errors[field] || "";
+        });
+        if (Object.keys(errors).length) {
+          statusEl.textContent = "Revise os campos destacados.";
+          statusEl.style.color = "#fee2e2";
+          return;
+        }
+        statusEl.textContent = "Briefing enviado! Entraremos em contato em breve.";
+        statusEl.style.color = "#bbf7d0";
+        contactForm.reset();
+      });
+
+      const themeButtons = Array.from(document.querySelectorAll("[data-theme-option]"));
+      const themes = ["light", "dark"];
+      window.applyTheme = function applyTheme(theme) {
+        if (!themes.includes(theme)) theme = "light";
+        document.body.setAttribute("data-theme", theme);
+        themeButtons.forEach((btn) => {
+          const option = btn.getAttribute("data-theme-option");
+          btn.classList.toggle("active", option === theme);
+        });
+        try {
+          localStorage.setItem("jmbio-theme", theme);
+        } catch {
+          /* ignore storage issues */
+        }
+      };
+      themeButtons.forEach((button) => {
+        button.addEventListener("click", () => window.applyTheme(button.getAttribute("data-theme-option")));
+      });
+      let storedTheme = "light";
+      try {
+        storedTheme = localStorage.getItem("jmbio-theme") || "light";
+      } catch {
+        storedTheme = "light";
+      }
+      window.applyTheme(storedTheme);
+    </script>
+  </body>
+</html>

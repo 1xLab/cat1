@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#061d34"/>
+      <stop offset="50%" stop-color="#102a44"/>
+      <stop offset="100%" stop-color="#274157"/>
+    </linearGradient>
+    <linearGradient id="roadGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1d232c"/>
+      <stop offset="100%" stop-color="#0f141a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#skyGrad)"/>
+  <g opacity="0.25">
+    <path d="M0 420 C 300 360 600 420 900 380 C1200 340 1400 360 1600 340 L1600 420 L0 420 Z" fill="#0e1724"/>
+  </g>
+  <rect y="520" width="1600" height="380" fill="url(#roadGrad)"/>
+  <rect y="520" width="1600" height="20" fill="#f97316" opacity="0.35"/>
+  <g transform="translate(220,360)">
+    <rect x="30" y="150" width="900" height="180" rx="40" fill="#1e1f24" stroke="#f97316" stroke-width="8"/>
+    <rect x="580" y="-10" width="280" height="200" rx="25" fill="#2b303b" stroke="#f97316" stroke-width="8"/>
+    <rect x="615" y="25" width="205" height="120" rx="18" fill="#31a5d9"/>
+    <rect x="640" y="45" width="80" height="90" rx="12" fill="#4fd2ff" opacity="0.6"/>
+    <rect x="740" y="45" width="70" height="90" rx="12" fill="#4fd2ff" opacity="0.6"/>
+    <path d="M480 150 L520 20 L720 20 L760 150 Z" fill="#23252b" stroke="#f97316" stroke-width="6"/>
+    <rect x="60" y="190" width="280" height="80" rx="15" fill="#f97316" opacity="0.3"/>
+    <rect x="360" y="190" width="160" height="80" rx="15" fill="#f97316" opacity="0.25"/>
+    <rect x="540" y="190" width="120" height="80" rx="12" fill="#6bb7ff" opacity="0.4"/>
+    <rect x="720" y="200" width="120" height="70" rx="12" fill="#6bb7ff" opacity="0.4"/>
+    <rect x="880" y="210" width="70" height="60" rx="12" fill="#fb923c"/>
+    <circle cx="220" cy="350" r="95" fill="#0d1117" stroke="#b9c0cf" stroke-width="18"/>
+    <circle cx="220" cy="350" r="40" fill="#1f2933"/>
+    <circle cx="700" cy="350" r="95" fill="#0d1117" stroke="#b9c0cf" stroke-width="18"/>
+    <circle cx="700" cy="350" r="40" fill="#1f2933"/>
+    <rect x="-60" y="210" width="90" height="110" rx="15" fill="#f97316"/>
+    <circle cx="-15" cy="265" r="16" fill="#ffd9b0"/>
+    <rect x="-15" y="230" width="45" height="55" rx="8" fill="#f97316"/>
+    <rect x="-40" y="260" width="35" height="70" fill="#1e1f24"/>
+  </g>
+  <circle cx="1250" cy="110" r="150" fill="#f97316" opacity="0.35"/>
+  <circle cx="200" cy="170" r="120" fill="#38bdf8" opacity="0.2"/>
+</svg>

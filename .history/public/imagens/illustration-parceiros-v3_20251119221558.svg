@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="1400" height="900" role="img" aria-label="Ilustração de parceiros — profissionais conectados, estilo moderno e limpo"> 
+  <defs>
+    <linearGradient id="bgGrad" x1="0" x2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#fff7f0"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" x2="1">
+      <stop offset="0" stop-color="#f26b21"/>
+      <stop offset="1" stop-color="#ff9a57"/>
+    </linearGradient>
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="18" stdDeviation="28" flood-color="#111827" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .bg{fill:url(#bgGrad)}
+      .accent{fill:url(#accentGrad)}
+      .dark{fill:#111827}
+      .muted{fill:#f3f4f6}
+      .label{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
+    </style>
+  </defs>
+
+  <rect width="1400" height="900" rx="20" class="bg"/>
+
+  <!-- soft abstract shapes -->
+  <g opacity="0.08">
+    <ellipse cx="300" cy="220" rx="220" ry="110" fill="#f26b21"/>
+    <ellipse cx="1050" cy="260" rx="200" ry="100" fill="#111827"/>
+  </g>
+
+  <!-- connecting arcs -->
+  <g fill="none" stroke="url(#accentGrad)" stroke-width="10" stroke-linecap="round">
+    <path d="M360 420 C520 330, 880 330, 1040 420" opacity="0.98"/>
+    <path d="M260 540 C520 460, 880 460, 1140 540" opacity="0.6" stroke-dasharray="22 14"/>
+  </g>
+
+  <!-- three refined figures with clothing details -->
+  <g filter="url(#softShadow)">
+    <!-- left person -->
+    <g transform="translate(260 330)">
+      <circle cx="0" cy="0" r="80" class="accent"/>
+      <g transform="translate(-56 110)">
+        <rect x="0" y="0" width="112" height="140" rx="18" class="muted"/>
+        <rect x="10" y="12" width="92" height="116" rx="12" fill="#fff" opacity="0.04"/>
+        <path d="M20 40 h72 v10 h-72z" fill="#111827" opacity="0.06"/>
+      </g>
+    </g>
+
+    <!-- center person (primary) -->
+    <g transform="translate(700 300)">
+      <circle cx="0" cy="0" r="120" class="dark"/>
+      <g transform="translate(-84 150)">
+        <rect x="0" y="0" width="168" height="200" rx="22" class="accent"/>
+        <rect x="14" y="18" width="140" height="164" rx="16" fill="#fff" opacity="0.04"/>
+        <path d="M28 56 h112 v16 H28z" fill="#111827" opacity="0.06"/>
+      </g>
+    </g>
+
+    <!-- right person -->
+    <g transform="translate(1140 360)">
+      <circle cx="0" cy="0" r="80" class="accent"/>
+      <g transform="translate(-56 110)">
+        <rect x="0" y="0" width="112" height="140" rx="18" class="muted"/>
+        <rect x="10" y="12" width="92" height="116" rx="12" fill="#fff" opacity="0.04"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- small connection badges -->
+  <g transform="translate(540 440)">
+    <rect x="-60" y="-40" width="120" height="88" rx="16" class="muted"/>
+    <circle cx="0" cy="0" r="18" class="accent"/>
+    <rect x="140" y="-40" width="140" height="88" rx="16" class="muted"/>
+  </g>
+
+  <!-- headline -->
+  <g transform="translate(120 120)">
+    <text x="0" y="40" font-size="44" class="label dark">Parceiros estratégicos</text>
+    <text x="0" y="86" font-size="18" fill="#6b7280">Conectando clínicas, laboratórios e serviços com confiança</text>
+  </g>
+
+  <!-- brand block -->
+  <g transform="translate(1080 820)">
+    <rect width="160" height="64" rx="14" class="accent"/>
+    <text x="40" y="42" font-size="20" font-family="Inter, system-ui, Arial" fill="#fff">Jmbio</text>
+  </g>
+
+</svg>

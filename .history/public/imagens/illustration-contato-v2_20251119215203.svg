@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Ilustração — contato" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="gp7" x1="0" x2="1">
+      <stop offset="0" stop-color="#f26b21"/>
+      <stop offset="1" stop-color="#f26b21" stop-opacity="0.65"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#fff"/>
+  <g transform="translate(72 60)">
+    <rect width="656" height="480" rx="24" fill="#fbfbfc" stroke="#111827" stroke-opacity="0.04"/>
+    <g transform="translate(48 48)">
+      <rect x="36" y="36" width="520" height="200" rx="12" fill="url(#gp7)"/>
+      <rect x="80" y="260" width="200" height="140" rx="12" fill="#fff" stroke="#111827" stroke-opacity="0.03"/>
+      <path d="M320 320 L380 280 L460 340" stroke="#f26b21" stroke-width="6" stroke-linecap="round" fill="none"/>
+    </g>
+  </g>
+</svg>

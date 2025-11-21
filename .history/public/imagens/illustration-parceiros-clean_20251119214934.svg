@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Ilustração conceitual — parceiros" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="g4" x1="0" x2="1">
+      <stop offset="0" stop-color="#f26b21"/>
+      <stop offset="1" stop-color="#f26b21" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#fff"/>
+  <g transform="translate(60 40)">
+    <rect x="0" y="0" width="680" height="520" rx="28" fill="#fbfbfc" stroke="#111827" stroke-opacity="0.05"/>
+    <g transform="translate(64 64)">
+      <circle cx="200" cy="160" r="72" fill="url(#g4)"/>
+      <circle cx="340" cy="160" r="72" fill="#f8f8f9"/>
+      <circle cx="480" cy="160" r="72" fill="#fff" stroke="#111827" stroke-opacity="0.03"/>
+    </g>
+  </g>
+</svg>
