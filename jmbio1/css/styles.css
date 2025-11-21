@@ -14,8 +14,8 @@
   --color-primary-light: #f4a574;
   --color-primary-dark: #c45e24;
   --color-primary-subtle: rgba(224, 122, 61, 0.08);
-  --color-header-bg: rgba(255, 255, 255, 0.85);
-  --color-header-scrolled: rgba(255, 255, 255, 0.95);
+  --color-header-bg: rgba(255, 255, 255, 0.55);
+  --color-header-scrolled: rgba(255, 255, 255, 0.75);
   --color-outline: rgba(0, 0, 0, 0.08);
   --color-outline-hover: rgba(0, 0, 0, 0.15);
   --color-accent: #2c3e50;
@@ -49,8 +49,8 @@
   --color-primary-light: #f4a574;
   --color-primary-dark: #c45e24;
   --color-primary-subtle: rgba(224, 122, 61, 0.08);
-  --color-header-bg: rgba(255, 255, 255, 0.85);
-  --color-header-scrolled: rgba(255, 255, 255, 0.95);
+  --color-header-bg: rgba(255, 255, 255, 0.55);
+  --color-header-scrolled: rgba(255, 255, 255, 0.75);
   --color-outline: rgba(0, 0, 0, 0.08);
   --color-outline-hover: rgba(0, 0, 0, 0.15);
   --color-footer-bg: #1a1a1a;
@@ -69,8 +69,8 @@
   --color-primary-light: #f8c4a0;
   --color-primary-dark: #e07a3d;
   --color-primary-subtle: rgba(244, 165, 116, 0.12);
-  --color-header-bg: rgba(15, 15, 15, 0.85);
-  --color-header-scrolled: rgba(26, 26, 26, 0.95);
+  --color-header-bg: rgba(15, 15, 15, 0.55);
+  --color-header-scrolled: rgba(26, 26, 26, 0.75);
   --color-outline: rgba(255, 255, 255, 0.08);
   --color-outline-hover: rgba(255, 255, 255, 0.15);
   --color-footer-bg: #0a0a0a;
