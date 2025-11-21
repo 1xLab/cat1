@@ -137,9 +137,52 @@ body {
   background: var(--color-header-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-top: 2px solid var(--color-primary);
   border-bottom: 1px solid transparent;
   transition: all var(--transition-normal);
+}
+
+/* Header Top Line - Animated Orange */
+.header-top-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(224, 122, 61, 0.3);
+  overflow: hidden;
+}
+
+.header-top-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--color-primary) 20%, var(--color-primary-light) 50%, var(--color-primary) 80%, transparent);
+  animation: header-line-slide 8s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+@keyframes header-line-slide {
+  0% {
+    left: -60%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.9;
+  }
+  45% {
+    left: 100%;
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    left: -60%;
+    opacity: 0;
+  }
 }
 
 .site-header.scrolled {
