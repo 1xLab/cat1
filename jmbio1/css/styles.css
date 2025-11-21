@@ -444,14 +444,14 @@ body {
    ============================================ */
 .page-hero {
   position: relative;
-  height: 280px;
+  height: 210px;
   overflow: hidden;
   margin-top: 60px; /* header height */
 }
 
 @media (min-width: 768px) {
   .page-hero {
-    height: 320px;
+    height: 240px;
   }
 }
 
